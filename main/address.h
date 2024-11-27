@@ -10,7 +10,7 @@ class Address{
     Address();
     Address(string, string, string, string, string);
     ~Address();
-    void Update(string, string, string, string, string);
+    bool Update(string, string, string, string, string);
     void Display();
 
 	private:
