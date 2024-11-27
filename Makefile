@@ -1,5 +1,5 @@
 CC=g++
-FLAGS=-g -Wall
+FLAGS=-std:c++17 -g -Wall
 SOURCES=main.cpp records.cpp
 
 all: CS314_TermProject
