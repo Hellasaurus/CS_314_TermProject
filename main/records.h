@@ -3,12 +3,14 @@
 // Fall 2024
 // Definitions for the data types that constitute user, provider, similar records
 
-using namespace std;
 
 #include <string.h>
 #include <iostream>
+#include <vector>
 
 #include "address.h"
+
+using namespace std;
 
 // Address string lengths
 const int ADDR_HOUSE_LEN = 25;
@@ -63,3 +65,7 @@ User::User(string a_name, Address a_addr)
     name = a_name;
     address = a_addr;
 }
+
+int readMembers(FILE fd, vector<Member>);
+int readProviders(FILE fd, vector<Provider>);
+int readServices(FILE fd, vector<Service>);
