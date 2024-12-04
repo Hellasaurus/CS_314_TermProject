@@ -3,12 +3,28 @@
 // Fall 2024
 
 #include "records.h"
+#include <iostream>
+#include <sstream>
 
-int readServices(istream source, vector<Service> dest)
+#include <string>
+
+using namespace std;
+
+int readServices(istream& source, vector<Service> dest)
 {
-    while (getline(source, ))
+    string line = string();
+    string token = string();
+    istringstream linestream;
+
+    while (!(source.eofbit))
     {
-        /* code */
+        getline(source, line);
+        linestream.str(line);
+        
+        getline(linestream, token, ',');
+        
+        getline(linestream, token, ',');
+        
     }
     
     return 0;
