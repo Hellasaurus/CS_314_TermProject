@@ -29,4 +29,24 @@ public:
             cout << "Service Name: " << serviceName << endl;
         }
     }
+
+    // Getter for ID
+    int getId() const {
+        return id;
+    }
+
+    // Getter for Service Name
+    string getServiceName() const {
+        return serviceName;
+    }
+
+    // Getter for Description
+    string getDescription() const {
+        return description;
+    }
+
+    // Method to get the fee
+    double getFee() const {
+        return fee;
+    }
 };
