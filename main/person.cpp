@@ -7,35 +7,46 @@ Person::Person(): id(0), name(""), a_address()
 {}
 
 //Parameterized constructor
-Person::Person(int n_id, const string & n_name, const Address & n_address): id(n_id), name(n_name), a_address(n_address)
+Person::Person(int n_id, const string& n_name, const Address& n_address): id(n_id), name(n_name), a_address(n_address)
 {}
 
 //Getter function for 'id'
-int Person::get_id() const
+int Person::getId() const
 {
     return id;
 }
 
 //Setter function for 'id'
-void Person::set_id(int n_id)
+void Person::setId(int n_id)
 {
     id = n_id;
 }
 
-//Setter function for 'name'
-string Person::get_name() const
+//Getter function for 'name'
+string Person::getName() const
 {
     return name;
 }
 
-//Getter function for 'name'
-void Person::set_name(const string & n_name)
+//Setter function for 'name'
+void Person::setName(const string& n_name)
 {
     name = n_name;
 }
 
+//Getter function for address
+Address Person::getAddress() const
+{
+    return a_address;
+}
+
+//Setter function for address
+void Person::setAddress(const Address& n_address)
+{
+    a_address = n_address;
+}
 //Check if there is a match
-bool Person::is_match(const string & match) const
+bool Person::isMatch(const string& match) const
 {
     return name == match || to_string(id) == match;
 }
@@ -45,7 +56,8 @@ void Person::display() const
 {
     cout << "\nPerson's name: " << name << endl;
     cout << "ID #: " << id << endl;
-    cout << "Address is: " << a_address << endl;
+    cout << "Address is: " << endl;
+    a_address.display();
 }
 
 
@@ -55,13 +67,13 @@ Provider::Provider()
 {}
 
 //Parameterized constructor
-Provider::Provider(int n_id, string & n_name, Address & n_address): id(n_id), name(n_name), a_address(n_address)
+Provider::Provider(int n_id, string& n_name, Address& n_address): id(n_id), name(n_name), a_address(n_address)
 {}
 
 //Check if there is a match
-bool Provider::is_match(const string & match)
+bool Provider::isMatch(const string& match)
 {
-    return Person::is_match(match);
+    return Person::isMatch(match);
 }
 
 //Display a provider's information
@@ -79,13 +91,13 @@ Member::Member(): status(true)
 {}
 
 //Parameterized constructor
-Member::Member(int n_id, string & n_name, Address & n_address, bool n_status): id(n_id), name(n_name), a_address(n_address), status(n_status)
+Member::Member(int n_id, string& n_name, Address& n_address, bool n_status): id(n_id), name(n_name), a_address(n_address), status(n_status)
 {}
 
 //Check if there is a match
-bool Member::is_match(const string & match)
+bool Member::isMatch(const string& match)
 {
-    return Person::is_match(match);
+    return Person::isMatch(match);
 }
 
 //Display member's information
@@ -107,13 +119,13 @@ int Member::display() const
 }
 
 //Check the status of membership
-bool Member::check_status() const
+bool Member::checkStatus() const
 {
     return status;
 }
 
 //Update the status of membership
-void Member::update_status(bool n_status)
+void Member::updateStatus(bool n_status)
 {
     status = n_status;
 }
