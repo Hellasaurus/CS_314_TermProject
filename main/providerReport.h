@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <vector>
+#include "person.h"
+#include "transaction.h"
+
 using namespace std;
 
 class ProviderReport{
@@ -14,8 +17,11 @@ class ProviderReport{
 
    public:
     ProviderReport();
+    ProviderReport(Provider&);
     ~ProviderReport();
     void Generate();
+    void add_transaction(Transaction&);
+    void Clear();
 };
 
 #endif
