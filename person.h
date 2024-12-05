@@ -5,6 +5,7 @@
 #include <cstring>
 #include <string>
 #include <cstdlib>
+#include "address.h"
 
 using namespace std;
 
@@ -14,12 +15,16 @@ class Person
 {
     public:
         Person();
-        virtual ~Person();
-        int insert_person(int n_id, const string & n_name, const Address & n_address);
-        virtual bool is_match(const string & match);
-        virtual int display() const;
+        Person(int n_id, const string & n_name, const Address & n_address);
+        
+        int get_id() const;
+        void set_id(int n_id);
+        string get_name() const;
+        void set_name(const string & n_name);
 
-    protected:
+        bool is_match() const;
+        void display() const;
+
         int id;
         string name;
         Address a_address;
@@ -29,25 +34,22 @@ class Provider: public Person
 {
     public:
         Provider();
-        int insert_provider(int n_id, string & n_name, Address & n_address);
+        Provider(int n_id, string & n_name, Address & n_address);
         bool is_match(const string & match);
         int display() const;
-
-    protected:
 };
 
 class Member: public Person
 {
     public:
         Member();
-        int insert_member(int n_id, string & n_name, Address & n_address, bool n_status);
+        Member(int n_id, string & n_name, Address & n_address, bool n_status);
         bool is_match(const string & match);
         int display() const;
-        bool check_states();
+        bool check_status() const;
+        void update_status(bool n_status);
 
-    protected:
         bool status;
-        
 };
 
 #endif
