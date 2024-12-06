@@ -21,13 +21,10 @@ public:
     Transaction(const string& serviceDate, const string& receiveDate, const string& currDate,
                 const string& comment, int memberID, int providerID, const Service& service);
 
-    // Method to check memberID and return all fields if it matches
-    string checkByMemberID(int id) const;
-
-    // Method to check providerID and return all fields if it matches
-    string checkByProviderID(int id) const;
-
-    // Getter for service fee
+    // Getters for Service data fields
+    int getServiceId() const;
+    string getServiceName() const;
+    string getServiceDescription() const;
     double getServiceFee() const;
 
     // Getters for individual fields
