@@ -2,15 +2,25 @@
 // CS 314 Group 7 
 // Fall 2024
 
-#include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+#include "records.h"
 #include "address.h"
 
 int main(int argc, char ** argv) {
-  
-  Address newAddress("test", "test2", "portland", "oregon", "97214");
-  newAddress.Display();
-  newAddress.Update("test", "test2", "salem", "oregon", "97303");
-  newAddress.Display();
+
+  ifstream servStream = ifstream();
+  servStream.open("./users/services.csv");
+  vector<Service> servDB = vector<Service>();
+
+  readServices(servStream, servDB);
+
+  for (int i = 0; i < servDB.size(); i++){
+    servDB[i].display(); 
+    cout << "\n";
+  }
 
   return 0;
 }

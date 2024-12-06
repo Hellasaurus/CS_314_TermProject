@@ -4,7 +4,7 @@
 // Definitions for the data types that constitute user, provider, similar records
 
 
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <vector>
 
@@ -54,18 +54,14 @@ public:
 class Service
 {
 public:
-    Service(int a_id, string a_name);
-
     int id;
     string name;
+
+    void display(ostream& stream = cout, char delim = ' ');
 };
 
-User::User(string a_name, Address a_addr)
-{
-    name = a_name;
-    address = a_addr;
-}
+
 
 int readMembers(FILE fd, vector<Member>);
 int readProviders(FILE fd, vector<Provider>);
-int readServices(FILE fd, vector<Service>);
+int readServices(istream& source, vector<Service>& dest);
