@@ -1,6 +1,8 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <iostream>
+#include <iomanip>
+#include <vector>
 #include <cctype>
 #include <cstring>
 #include <string>
@@ -10,6 +12,7 @@
 using namespace std;
 
 
+//Person class
 class Person
 {
     public:
@@ -27,25 +30,27 @@ class Person
 
         int id;
         string name;
-        Address a_address;
+        Address address;
 };
 
+//Provider class, derived from Person
 class Provider: public Person
 {
     public:
         Provider();
-        Provider(int n_id, string& n_name, Address& n_address);
-        bool isMatch(const string& match);
-        int display() const;
+        Provider(int n_id, const string& n_name, const Address& n_address);
+        bool isMatch(const string& match) const;
+        void display() const;
 };
 
+//Member class, derived from Person
 class Member: public Person
 {
     public:
         Member();
-        Member(int n_id, string& n_name, Address& n_address, bool n_status);
-        bool isMatch(const string& match);
-        int display() const;
+        Member(int n_id, const string& n_name, const Address& n_address, bool n_status);
+        bool isMatch(const string& match) const;
+        void display() const;
         bool checkStatus() const;
         void updateStatus(bool n_status);
 

@@ -3,12 +3,14 @@ using namespace std;
 
 //***********************************Person class******************************************
 //Default constructor
-Person::Person(): id(0), name(""), a_address()
+Person::Person(): id(0), name(""), address()
 {}
 
-//Parameterized constructor
+//Parameterized constructor and initialization list
 Person::Person(int n_id, const string& n_name, const Address& n_address): id(n_id), name(n_name), a_address(n_address)
-{}
+{
+    setId(n_id);
+}
 
 //Getter function for 'id'
 int Person::getId() const
@@ -19,7 +21,14 @@ int Person::getId() const
 //Setter function for 'id'
 void Person::setId(int n_id)
 {
-    id = n_id;
+    if(n_id >= 100000000 && n_id <= 999999999)
+    {
+        id = n_id;
+    }
+    else
+    {
+        throw invalid_argument("ID must be a 9-digit number.");
+    }
 }
 
 //Getter function for 'name'
@@ -37,13 +46,13 @@ void Person::setName(const string& n_name)
 //Getter function for address
 Address Person::getAddress() const
 {
-    return a_address;
+    return address;
 }
 
 //Setter function for address
 void Person::setAddress(const Address& n_address)
 {
-    a_address = n_address;
+    address = n_address;
 }
 //Check if there is a match
 bool Person::isMatch(const string& match) const
@@ -56,8 +65,8 @@ void Person::display() const
 {
     cout << "\nPerson's name: " << name << endl;
     cout << "ID #: " << id << endl;
-    cout << "Address is: " << endl;
-    a_address.display();
+    cout << "Address is: ";
+    address.display();
 }
 
 
@@ -66,22 +75,21 @@ void Person::display() const
 Provider::Provider()
 {}
 
-//Parameterized constructor
-Provider::Provider(int n_id, string& n_name, Address& n_address): id(n_id), name(n_name), a_address(n_address)
+//Parameterized constructor with initialization list
+Provider::Provider(int n_id, const string& n_name, const Address& n_address): Person(n_id, n_name, n_address)
 {}
 
 //Check if there is a match
-bool Provider::isMatch(const string& match)
+bool Provider::isMatch(const string& match) const
 {
     return Person::isMatch(match);
 }
 
 //Display a provider's information
-int Provider::display() const
+void Provider::display() const
 {   
-    cout << "*** Displaying Providers ***" << endl;
-    int temp = Person::display();
-    return temp;
+    cout << "*** Displaying Provider ***" << endl;
+    Person::display();
 }
 
 
@@ -91,21 +99,21 @@ Member::Member(): status(true)
 {}
 
 //Parameterized constructor
-Member::Member(int n_id, string& n_name, Address& n_address, bool n_status): id(n_id), name(n_name), a_address(n_address), status(n_status)
+Member::Member(int n_id, const string& n_name, const Address& n_address, bool n_status): Person(n_id, n_name, n_address), status(n_status)
 {}
 
 //Check if there is a match
-bool Member::isMatch(const string& match)
+bool Member::isMatch(const string& match) const
 {
     return Person::isMatch(match);
 }
 
 //Display member's information
-int Member::display() const
+void Member::display() const
 {   
-    cout << "*** Displaying Members ***" << endl;
-    int temp = Person::display();
-    if (check_status() == true)
+    cout << "*** Displaying Member ***" << endl;
+    Person::display();
+    if (checkStatus() == true)
     {
         cout << "The status of this member is ACTIVE!" << endl;
     }
@@ -115,7 +123,6 @@ int Member::display() const
              << "\nBecause the member has not paid membership fees for at least a month."
              << endl;
     }
-    return temp;
 }
 
 //Check the status of membership
