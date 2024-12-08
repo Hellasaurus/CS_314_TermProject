@@ -36,20 +36,14 @@ public:
     string getServiceReport();
 
     // Add new member
-    void addMember(int ID, const string& name, bool memberStatus,
-                   const string& addr_line_1, const string& addr_line_2,
-                   const string& city, const string& state, const string& zip);
+    void addMember(Member& to_add);
 
     // Add new provider
-    void addProvider(int ID, const string& name,
-                     const string& addr_line_1, const string& addr_line_2,
-                     const string& city, const string& state, const string& zip);
+    void addProvider(Provider & to_add);
 
     // Check member status
     bool checkMemberStatus(int memberID) const;
 
-    // Write data back to text files
-    void writeData() const;
 };
 
 #endif // MANAGER_H
