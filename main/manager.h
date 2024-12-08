@@ -18,9 +18,16 @@ const int MEMBER_ADDRESS_1_INDEX = 1;
 const int MEMBER_CITY_INDEX = 2;
 const int MEMBER_STATE_INDEX = 3;
 const int MEMBER_ZIP_INDEX = 4;
+
 const bool MEMBER_DEFAULT_STATUS = true;
+
 const int PROVIDER_DATA_COLS = 5;
+
 const int SERVICE_DATA_COLS = 5;
+const int SERVICE_ID_INDEX = 0;
+const int SERVICE_NAME_INDEX = 1;
+const int SERVICE_DESC_INDEX = 2;
+const int SERVICE_COST_INDEX = 3;
 
 
 class Manager {
