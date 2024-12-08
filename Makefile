@@ -1,8 +1,12 @@
 CC=g++
 FLAGS=-std=c++17 -g -Wall
-SOURCES=./main/main.cpp ./main/records.cpp ./main/address.cpp ./main/person.cpp
+SOURCES=./main/*.cpp
+BINARIES=CS314_TermProject
 
-all: CS314_TermProject
+all: clean $(BINARIES)
 
 CS314_TermProject: $(SOURCES)
 	$(CC) -o $@ $^ $(FLAGS)
+
+clean:
+	rm -f $(BINARIES) *.o
