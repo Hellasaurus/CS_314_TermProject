@@ -19,14 +19,13 @@ class Person
     public:
         Person();
         Person(int n_id, const string& n_name, const Address& n_address);
+
+        bool operator==(const Person& other) const;
+        bool operator==(const int other) const;
         
         int getId() const;
-        string getName() const;
-        Address getAddress() const;
-        void setName(const string& n_name);
         void setId(int n_id);
         void setAddress(const Address& n_address);
-        bool isMatch() const;
         void display() const;
 
         int id;
@@ -50,7 +49,6 @@ class Member: public Person
     public:
         Member();
         Member(int n_id, const string& n_name, const Address& n_address, bool n_status);
-        bool isMatch(const string& match) const;
         void display() const;
         bool checkStatus() const;
         void updateStatus(bool n_status);

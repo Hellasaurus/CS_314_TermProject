@@ -7,9 +7,23 @@ Person::Person(): id(0), name(""), address()
 {}
 
 //Parameterized constructor and initialization list
-Person::Person(int n_id, const string& n_name, const Address& n_address): id(n_id), name(n_name), a_address(n_address)
+Person::Person(int n_id, const string& n_name, const Address& n_address): id(n_id), name(n_name), address(n_address)
 {
     setId(n_id);
+}
+
+bool Person::operator==(const Person &other) const
+{
+    if (this == &other) return true;
+    if (this->id == other.id) return true;
+    
+    return false;
+}
+
+bool Person::operator==(const int other) const
+{
+    if (this->id == other) return true;
+    return false;
 }
 
 //Getter function for 'id'
@@ -31,33 +45,11 @@ void Person::setId(int n_id)
     }
 }
 
-//Getter function for 'name'
-string Person::getName() const
-{
-    return name;
-}
-
-//Setter function for 'name'
-void Person::setName(const string& n_name)
-{
-    name = n_name;
-}
-
-//Getter function for address
-Address Person::getAddress() const
-{
-    return address;
-}
 
 //Setter function for address
 void Person::setAddress(const Address& n_address)
 {
     address = n_address;
-}
-//Check if there is a match
-bool Person::isMatch(const string& match) const
-{
-    return name == match || to_string(id) == match;
 }
 
 //Display person's information
@@ -79,12 +71,6 @@ Provider::Provider()
 Provider::Provider(int n_id, const string& n_name, const Address& n_address): Person(n_id, n_name, n_address)
 {}
 
-//Check if there is a match
-bool Provider::isMatch(const string& match) const
-{
-    return Person::isMatch(match);
-}
-
 //Display a provider's information
 void Provider::display() const
 {   
@@ -101,12 +87,6 @@ Member::Member(): status(true)
 //Parameterized constructor
 Member::Member(int n_id, const string& n_name, const Address& n_address, bool n_status): Person(n_id, n_name, n_address), status(n_status)
 {}
-
-//Check if there is a match
-bool Member::isMatch(const string& match) const
-{
-    return Person::isMatch(match);
-}
 
 //Display member's information
 void Member::display() const

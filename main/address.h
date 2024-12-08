@@ -9,8 +9,8 @@ class Address{
 public:
     Address();
     Address(string, string, string, string, string);
-    bool Update(string, string, string, string, string);
-    void Display();
+    bool update(string, string, string, string, string);
+    void display() const;
     
     string addr_line_1;
     string addr_line_2;

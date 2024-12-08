@@ -18,7 +18,7 @@ Address::Address(string newLine1, string newLine2, string newCity, string newSta
     state = newState;
     zip = newZip;
 }
-bool Address::Update(string newLine1, string newLine2, string newCity, string newState, string newZip){
+bool Address::update(string newLine1, string newLine2, string newCity, string newState, string newZip){
   addr_line_1 = newLine1;
   addr_line_2 = newLine2;
   city = newCity;
@@ -27,7 +27,7 @@ bool Address::Update(string newLine1, string newLine2, string newCity, string ne
 
   return true;
 }
-void Address::Display(){
+void Address::display() const{
  cout << "Address Line 1: " << addr_line_1 << endl;
  cout << "Address Line 2: " << addr_line_2 << endl;
  cout << "City: " << city << endl;

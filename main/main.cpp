@@ -9,9 +9,9 @@
 int main(int argc, char ** argv) {
   
   Address newAddress("test", "test2", "portland", "oregon", "97214");
-  newAddress.Display();
-  newAddress.Update("test", "test2", "salem", "oregon", "97303");
-  newAddress.Display();
+  newAddress.display();
+  newAddress.update("test", "test2", "salem", "oregon", "97303");
+  newAddress.display();
 
   return 0;
 }
