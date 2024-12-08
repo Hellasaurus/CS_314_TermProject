@@ -22,8 +22,13 @@ const int MEMBER_ZIP_INDEX = 4;
 const bool MEMBER_DEFAULT_STATUS = true;
 
 const int PROVIDER_DATA_COLS = 5;
+const int PROVIDER_NAME_INDEX = 0;
+const int PROVIDER_ADDRESS_1_INDEX = 1;
+const int PROVIDER_CITY_INDEX = 2;
+const int PROVIDER_STATE_INDEX = 3;
+const int PROVIDER_ZIP_INDEX = 4;
 
-const int SERVICE_DATA_COLS = 5;
+const int SERVICE_DATA_COLS = 4;
 const int SERVICE_ID_INDEX = 0;
 const int SERVICE_NAME_INDEX = 1;
 const int SERVICE_DESC_INDEX = 2;
@@ -64,20 +69,14 @@ public:
 
     // Load data from text files
     void loadMembers(bool verbose = false);
-    void loadProviders();
-    void loadServices();
+    void loadProviders(bool verbose = false);
+    void loadServices(bool verbose = false);
 
     // get next sequential ID;
 
     // Get reports
-    string getProviderReport();
-    string getServiceReport();
-
-    // Add new member
-    void addMember(Member& to_add);
-
-    // Add new provider
-    void addProvider(Provider & to_add);
+    string ProviderReport();
+    string ServiceReport();
 
     // Check member status
     bool checkMemberStatus(int memberID) const;

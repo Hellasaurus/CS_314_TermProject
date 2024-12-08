@@ -29,7 +29,7 @@ bool Address::update(string newLine1, string newLine2, string newCity, string ne
 }
 void Address::display() const{
  cout << "Address Line 1: " << addr_line_1 << endl;
- cout << "Address Line 2: " << addr_line_2 << endl;
+ // cout << "Address Line 2: " << addr_line_2 << endl;
  cout << "City: " << city << endl;
  cout << "State: " << state << endl;
  cout << "Zip: " << zip << endl;
