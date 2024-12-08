@@ -2,7 +2,7 @@
 // CS 314 Group 7 
 // Fall 2024
 // Definitions for the data types that constitute user, provider, similar records
-
+#pragma once
 
 #include <string.h>
 #include <iostream>

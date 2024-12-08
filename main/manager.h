@@ -3,11 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "Member.h"
-#include "Provider.h"
-#include "Service.h"
-#include "ProviderReport.h"
-#include "ServiceReport.h"
+#include "person.h"
+#include "service.h"
+#include "providerReport.h"
 
 using namespace std;
 
@@ -22,7 +20,11 @@ private:
 
 public:
     // Constructor to initialize file paths
-    Manager(const string& memberFile, const string& providerFile, const string& serviceFile);
+    Manager(const string& memberFile, const string& providerFile, const string& serviceFile){
+        memberFilePath = memberFile;
+        providerFilePath = providerFile;
+        serviceFilePath = serviceFile;
+    }
 
     // Load data from text files
     void loadMembers();

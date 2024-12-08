@@ -1,4 +1,4 @@
-#include "Transaction.h"
+#include "transaction.h"
 
 // Constructor
 Transaction::Transaction(const string& serviceDate, const string& receiveDate, const string& currDate,
