@@ -8,6 +8,12 @@ using namespace std;
 class Address{
 public:
     Address();
+    /// @brief initialize address
+    /// @param  address line 1
+    /// @param  line 2
+    /// @param  city
+    /// @param  state
+    /// @param  zip
     Address(string, string, string, string, string);
     bool update(string, string, string, string, string);
     void display() const;

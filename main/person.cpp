@@ -16,7 +16,7 @@ bool Person::operator==(const Person &other) const
 {
     if (this == &other) return true;
     if (this->id == other.id) return true;
-    
+
     return false;
 }
 
@@ -35,7 +35,7 @@ int Person::getId() const
 //Setter function for 'id'
 void Person::setId(int n_id)
 {
-    if(n_id >= 100000000 && n_id <= 999999999)
+    if(n_id <= 999999999)
     {
         id = n_id;
     }
