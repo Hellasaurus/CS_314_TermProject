@@ -10,16 +10,21 @@ ProviderReport::ProviderReport(Provider& providerToAdd):provider(providerToAdd),
 ProviderReport::~ProviderReport(){
   Clear();
 }
-
 void ProviderReport::Generate() {
-  std::ofstream outFile("provider_report.txt");
+  std::time_t now = std::time(nullptr);
+  std::tm *localTime = std::localtime(&now);
 
+  std::ostringstream filename;
+  filename << "../output/provider_report_" << provider.name << "_"
+    << std::put_time(localTime, "%Y%m%d_%H%M%S") << ".txt";
+
+  std::ofstream outFile(filename.str());
   if (!outFile) {
     std::cerr << "Error: Could not open file for writing!" << std::endl;
     return;
   }
 
-  provider.display(outFile);
+  provider.display(outFile); 
 
   outFile << "SERVICES: " << std::endl;
   for (auto &service : services) {

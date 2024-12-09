@@ -11,15 +11,20 @@ memberReport::~memberReport(){
   Clear();
 }
 void memberReport::Generate() {
-  std::ofstream outFile("member_report.txt");
+  std::time_t now = std::time(nullptr);
+  std::tm *localTime = std::localtime(&now);
 
+  std::ostringstream filename;
+  filename << "../output/member_report_" << member.name << "_"
+    << std::put_time(localTime, "%Y%m%d_%H%M%S") << ".txt";
+
+  std::ofstream outFile(filename.str());
   if (!outFile) {
     std::cerr << "Error: Could not open file for writing!" << std::endl;
     return;
   }
 
-  member.display(outFile); 
-
+  member.display(outFile);
   for (auto &service : services) {
     outFile << "Date of Service: " << service.getServiceDate() << std::endl;
     outFile << "Provider ID: " << service.getProviderId() << std::endl;

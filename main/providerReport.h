@@ -6,6 +6,9 @@
 #include "person.h"
 #include "transaction.h"
 #include <fstream>
+#include <ctime>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
