@@ -1,6 +1,7 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
+#include <algorithm>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -73,7 +74,12 @@ public:
     void loadProviders(bool verbose = false);
     void loadServices(bool verbose = false);
 
-    // get next sequential ID;
+    
+    
+    int getMember(int id) const;
+    int getProvider(int id) const;
+    int getService(int id)const ;
+    int getTX(int id) const;
 
     // Get reports
     string ProviderReport();

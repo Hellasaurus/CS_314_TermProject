@@ -6,6 +6,7 @@ Transaction::Transaction(const string& serviceDate, const string& receiveDate, c
     : serviceDate(serviceDate), receiveDate(receiveDate), currDate(currDate), 
       comment(comment), memberID(memberID), providerID(providerID), service(service) {}
 
+
 // Getter for Service ID
 int Transaction::getServiceId() const {
     return service.id;
