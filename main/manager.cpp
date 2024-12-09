@@ -172,6 +172,11 @@ int Manager::getService(int id) const
     return -1;
 }
 
+ofstream &Manager::ProviderDirectory(ofstream &dest)
+{
+    dest << "======Provider Directory======" << 
+}
+
 int Manager::getMemberID() {return currMemberID++;}
 int Manager::getProviderID() {return currProviderID++;}
 int Manager::getServiceID() {return currServiceID++;}

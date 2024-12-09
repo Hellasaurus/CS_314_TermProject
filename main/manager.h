@@ -8,6 +8,8 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
+#include <chrono>
+#include <ctime>
 #include "person.h"
 #include "service.h"
 #include "providerReport.h"
@@ -81,8 +83,7 @@ public:
     int getService(int id)const ;
 
     // Get reports
-    string ProviderReport();
-    string ServiceReport();
+    ofstream & ProviderDirectory(ofstream & dest);
 
     // Check member status
     bool checkMemberStatus(int memberID) const;
