@@ -8,6 +8,7 @@
 #include <cstring>
 #include <string>
 #include <cstdlib>
+#include <fstream>
 #include "address.h"
 
 using namespace std;
@@ -26,6 +27,7 @@ class Person
         int getId() const;
         void setId(int n_id);
         void setAddress(const Address& n_address);
+        void display(ostream&) const;
         void display() const;
 
         int id;
@@ -40,6 +42,7 @@ class Provider: public Person
         Provider();
         Provider(int n_id, const string& n_name, const Address& n_address);
         bool isMatch(const string& match) const;
+        void display(ostream&) const;
         void display() const;
 };
 
@@ -49,9 +52,10 @@ class Member: public Person
     public:
         Member();
         Member(int n_id, const string& n_name, const Address& n_address, bool n_status);
-        void display() const;
+        void display(ostream&) const;
         bool checkStatus() const;
         void updateStatus(bool n_status);
+        void display() const;
 
         bool status;
 };

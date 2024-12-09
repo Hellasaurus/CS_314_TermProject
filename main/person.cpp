@@ -53,8 +53,14 @@ void Person::setAddress(const Address& n_address)
 }
 
 //Display person's information
-void Person::display() const
+void Person::display(ostream& outFile) const
 {
+    outFile << "\nPerson's name: " << name << endl;
+    outFile << "ID #: " << id << endl;
+    outFile << "Address is: ";
+    address.display(outFile);
+}
+void Person::display() const{
     cout << "\nPerson's name: " << name << endl;
     cout << "ID #: " << id << endl;
     cout << "Address is: ";
@@ -72,6 +78,11 @@ Provider::Provider(int n_id, const string& n_name, const Address& n_address): Pe
 {}
 
 //Display a provider's information
+void Provider::display(ostream& outFile) const
+{   
+    outFile << "*** Displaying Provider ***" << endl;
+    Person::display(outFile);
+}
 void Provider::display() const
 {   
     cout << "*** Displaying Provider ***" << endl;
@@ -89,6 +100,22 @@ Member::Member(int n_id, const string& n_name, const Address& n_address, bool n_
 {}
 
 //Display member's information
+void Member::display(ostream& outFile) const
+{   
+    outFile << "*** Displaying Member ***" << endl;
+    Person::display(outFile);
+    if (checkStatus() == true)
+    {
+        outFile << "The status of this member is ACTIVE!" << endl;
+    }
+    else
+    {
+        outFile << "The member status is SUSPENDED."
+             << "\nBecause the member has not paid membership fees for at least a month."
+             << endl;
+    }
+}
+
 void Member::display() const
 {   
     cout << "*** Displaying Member ***" << endl;
@@ -104,7 +131,6 @@ void Member::display() const
              << endl;
     }
 }
-
 //Check the status of membership
 bool Member::checkStatus() const
 {

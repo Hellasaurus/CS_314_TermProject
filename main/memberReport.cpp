@@ -10,13 +10,23 @@ memberReport::memberReport(Member &memberAdd): member(memberAdd){
 memberReport::~memberReport(){
   Clear();
 }
-void memberReport::Generate(){
-  member.display();
-  for (auto & service : services){
-    cout << "Date of Service: " << service.getServiceDate() << endl;
-    cout << "Provider ID: " << service.getProviderId() << endl;
-    cout << "Service name: " << service.getServiceName() << endl;
+void memberReport::Generate() {
+  std::ofstream outFile("member_report.txt");
+
+  if (!outFile) {
+    std::cerr << "Error: Could not open file for writing!" << std::endl;
+    return;
   }
+
+  member.display(outFile); 
+
+  for (auto &service : services) {
+    outFile << "Date of Service: " << service.getServiceDate() << std::endl;
+    outFile << "Provider ID: " << service.getProviderId() << std::endl;
+    outFile << "Service name: " << service.getServiceName() << std::endl;
+  }
+
+  outFile.close();
 }
 void memberReport::addService(Transaction& service){
   services.push_back(service);

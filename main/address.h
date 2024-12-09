@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include <fstream>
 
 using namespace std;
 class Address{
@@ -16,6 +17,7 @@ public:
     /// @param  zip
     Address(string, string, string, string, string);
     bool update(string, string, string, string, string);
+    void display(ostream& outFile) const;
     void display() const;
     
     string addr_line_1;

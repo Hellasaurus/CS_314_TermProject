@@ -11,18 +11,29 @@ ProviderReport::~ProviderReport(){
   Clear();
 }
 
-void ProviderReport::Generate(){
-  provider.display();
-  cout << "SERIVCES: " << endl;
-  for(auto & service : services){
-    cout << "Service Date: " << service.getServiceDate() << endl;
-    cout << "Receive Date: " << service.getReceiveDate() << endl;
-    cout << "Member ID: " << service.getMemberId() << endl;
-    cout << "Service Code: " << service.getServiceCode() << endl;
-    cout << "Fee: " << service.getServiceFee() << endl;
+void ProviderReport::Generate() {
+  std::ofstream outFile("provider_report.txt");
+
+  if (!outFile) {
+    std::cerr << "Error: Could not open file for writing!" << std::endl;
+    return;
   }
-  cout << "Total Consultations: " << num_consultations << endl;
-  cout << "Total Fee: " << total_fee << endl;
+
+  provider.display(outFile);
+
+  outFile << "SERVICES: " << std::endl;
+  for (auto &service : services) {
+    outFile << "Service Date: " << service.getServiceDate() << std::endl;
+    outFile << "Receive Date: " << service.getReceiveDate() << std::endl;
+    outFile << "Member ID: " << service.getMemberId() << std::endl;
+    outFile << "Service Code: " << service.getServiceCode() << std::endl;
+    outFile << "Fee: " << service.getServiceFee() << std::endl;
+  }
+
+  outFile << "Total Consultations: " << num_consultations << std::endl;
+  outFile << "Total Fee: " << total_fee << std::endl;
+
+  outFile.close();
 }
 void ProviderReport::add_transaction(Transaction& service){
   services.push_back(service);
