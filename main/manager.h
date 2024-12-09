@@ -63,19 +63,14 @@ public:
     vector<Service> services;      // List of all services
 
     // Constructor to initialize file paths
-    Manager(const string& memberFile, const string& providerFile, const string& serviceFile){
-        memberFilePath = memberFile;
-        providerFilePath = providerFile;
-        serviceFilePath = serviceFile;
-    }
+    Manager(const string& memberFile, const string& providerFile, const string& serviceFile);
 
     // Load data from text files
     void loadMembers(bool verbose = false);
     void loadProviders(bool verbose = false);
     void loadServices(bool verbose = false);
 
-    
-    
+    // find members by ID
     int getMember(int id) const;
     int getProvider(int id) const;
     int getService(int id)const ;

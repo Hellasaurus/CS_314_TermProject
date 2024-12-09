@@ -39,7 +39,6 @@ class Provider: public Person
     public:
         Provider();
         Provider(int n_id, const string& n_name, const Address& n_address);
-        bool isMatch(const string& match) const;
         void display() const;
 };
 
