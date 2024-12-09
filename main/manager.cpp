@@ -138,7 +138,7 @@ void Manager::loadServices(bool verbose)
                 stoi(srvData[SERVICE_ID_INDEX]),
                 srvData[SERVICE_NAME_INDEX],
                 srvData[SERVICE_DESC_INDEX],
-                stod(srvData[SERVICE_COST_INDEX])
+                stod(srvData[SERVICE_COST_INDEX])* 100.0
             )
         );
         if (verbose){

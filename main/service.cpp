@@ -17,6 +17,6 @@ void Service::display() const
     << setw(temp) << setfill(' ')
     << " Service Name: " << serviceName
     << " Service Description: " << description 
-    << " Service fee: " << put_money(fee)
+    << " Service fee: $" << put_money(fee, true)
     << '\n';
 }

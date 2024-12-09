@@ -16,6 +16,8 @@ const string svcPath = "./users/service_list.csv";
 
 int main(int argc, char ** argv) {
 
+  cout.imbue(locale("en_US.UTF-8")); // formats money type
+
   Manager myMan = Manager(memPath, proPath, svcPath);
 
   myMan.loadMembers();
