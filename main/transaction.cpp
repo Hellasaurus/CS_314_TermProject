@@ -26,3 +26,22 @@ double Transaction::getServiceFee() const {
     return service.fee;
 }
 
+int Transaction::getServiceCode() const {
+  return service.id;
+}
+
+
+int Transaction::getMemberId() const{
+  return memberID;
+}
+
+string Transaction::getServiceDate() const{
+  return serviceDate;   
+}
+
+string Transaction::getReceiveDate() const{
+  return receiveDate;   
+}
+int Transaction::getProviderId() const{
+  return providerID;
+}

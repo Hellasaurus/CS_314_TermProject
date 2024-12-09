@@ -9,6 +9,9 @@
 #include "person.h"
 #include "providerReport.h"
 #include "service.h"
+#include "memberReport.h"
+
+using namespace std;
 
 const string memPath = "./users/users_10.csv";
 const string proPath = "./users/provider_list.csv";

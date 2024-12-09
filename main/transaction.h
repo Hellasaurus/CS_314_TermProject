@@ -26,10 +26,14 @@ public:
     string getServiceName() const;
     string getServiceDescription() const;
     double getServiceFee() const;
+    int getServiceCode() const;
+    int getProviderId() const;
 
     // Getters for individual fields
     string getServiceDate() const;
     string getReceiveDate() const;
+    int getMemberId() const;
+  
 };
 
 #endif // TRANSACTION_H
