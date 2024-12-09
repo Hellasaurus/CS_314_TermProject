@@ -79,7 +79,6 @@ public:
     int getMember(int id) const;
     int getProvider(int id) const;
     int getService(int id)const ;
-    int getTX(int id) const;
 
     // Get reports
     string ProviderReport();
