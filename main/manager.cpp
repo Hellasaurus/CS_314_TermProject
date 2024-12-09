@@ -147,6 +147,30 @@ void Manager::loadServices(bool verbose)
         }
     }
 }
+/// @brief search for a value by ID
+/// @param id - The ID we are searching for
+/// @return - if successful, returns index of the matching value, -1 otherwise. 
+int Manager::getMember(int id) const
+{
+    for (int i = 0; i < members.size(); i++) {if (members[i] == id) return i;}
+    return -1;
+}
+/// @brief search for a value by ID
+/// @param id - The ID we are searching for
+/// @return - if successful, returns index of the matching value, -1 otherwise. 
+int Manager::getProvider(int id) const
+{
+    for (int i = 0; i < providers.size(); i++) {if (providers[i] == id) return i;}
+    return -1;
+}
+/// @brief search for a value by ID
+/// @param id - The ID we are searching for
+/// @return - if successful, returns index of the matching value, -1 otherwise. 
+int Manager::getService(int id) const
+{
+    for (int i = 0; i < services.size(); i++) {if (services[i] == id) return i;}
+    return -1;
+}
 
 int Manager::getMemberID() {return currMemberID++;}
 int Manager::getProviderID() {return currProviderID++;}

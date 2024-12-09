@@ -20,3 +20,5 @@ void Service::display() const
     << " Service fee: $" << put_money(fee, true)
     << '\n';
 }
+
+bool Service::operator==(int other) const {return this->id == other;}
