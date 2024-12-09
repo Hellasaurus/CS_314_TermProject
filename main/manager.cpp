@@ -102,6 +102,52 @@ void Manager::loadProviders(bool verbose)
     }
 }
 
+void Manager::loadServices(bool verbose)
+{
+    ifstream ifs (serviceFilePath.c_str());
+    if (!ifs.is_open()) cout << "Service file did not open successfully\n";
+    stringstream linestream;
+    string line;
+
+    // contains a string indicating each data member. 
+    string srvData[SERVICE_DATA_COLS];
+    // data SERVICE index
+    int i;
+
+    char c;
+
+    while (getline(ifs, line))
+    {
+        linestream = stringstream(line);
+        //reset count
+        i = 0;
+        //clear strings
+        for ( int j = 0; j < SERVICE_DATA_COLS; j++) srvData[j] = "";
+
+        //create a string for each column
+        while (linestream.get(c)){
+
+            if (c == ',') i++;
+            else if (c == '"') {;} //ugly way to ignore quotations.
+            else srvData[i] += c;
+        }
+
+        //initialize a SERVICE with collected data and add it to the vector
+        services.push_back(
+            Service(
+                stoi(srvData[SERVICE_ID_INDEX]),
+                srvData[SERVICE_NAME_INDEX],
+                srvData[SERVICE_DESC_INDEX],
+                stod(srvData[SERVICE_COST_INDEX])
+            )
+        );
+        if (verbose){
+            cout << "Adding service: ";
+            services.back().display();
+        }
+    }
+}
+
 int Manager::getMemberID() {return currMemberID++;}
 int Manager::getProviderID() {return currProviderID++;}
 int Manager::getServiceID() {return currServiceID++;}

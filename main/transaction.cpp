@@ -8,49 +8,21 @@ Transaction::Transaction(const string& serviceDate, const string& receiveDate, c
 
 // Getter for Service ID
 int Transaction::getServiceId() const {
-    return service.getId();
+    return service.id;
 }
 
 // Getter for Service Name
 string Transaction::getServiceName() const {
-    return service.getServiceName();
+    return service.serviceName;
 }
 
 // Getter for Service Description
-string Transaction::getServiceDescription() const {
-    return service.getDescription();
+string  Transaction::getServiceDescription() const {
+    return service.description;
 }
 
 // Getter for Service Fee
 double Transaction::getServiceFee() const {
-    return service.getFee();
+    return service.fee;
 }
 
-// Getters for individual fields
-string Transaction::getServiceDate() const {
-    return serviceDate;
-}
-
-string Transaction::getReceiveDate() const {
-    return receiveDate;
-}
-
-string Transaction::getCurrDate() const {
-    return currDate;
-}
-
-string Transaction::getComment() const {
-    return comment;
-}
-
-int Transaction::getMemberID() const {
-    return memberID;
-}
-
-int Transaction::getProviderID() const {
-    return providerID;
-}
-
-const Service& Transaction::getService() const {
-    return service;
-}

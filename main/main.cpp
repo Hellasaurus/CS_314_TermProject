@@ -12,14 +12,16 @@
 
 const string memPath = "./users/users_10.csv";
 const string proPath = "./users/provider_list.csv";
-const string svcPath = " ";
+const string svcPath = "./users/service_list.csv";
 
 int main(int argc, char ** argv) {
 
   Manager myMan = Manager(memPath, proPath, svcPath);
 
   myMan.loadMembers();
-  myMan.loadProviders(true);
+  myMan.loadProviders();
+  myMan.loadServices(true);
+
   
   // Address newAddress("test", "test2", "portland", "oregon", "97214");
   // newAddress.display();

@@ -30,11 +30,6 @@ public:
     // Getters for individual fields
     string getServiceDate() const;
     string getReceiveDate() const;
-    string getCurrDate() const;
-    string getComment() const;
-    int getMemberID() const;
-    int getProviderID() const;
-    const Service& getService() const;
 };
 
 #endif // TRANSACTION_H
