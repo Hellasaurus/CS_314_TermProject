@@ -83,7 +83,7 @@ public:
     int getService(int id)const ;
 
     // Get reports
-    ofstream & ProviderDirectory(ofstream & dest);
+    void serviceDirectory(ofstream & dest);
 
     // Check member status
     bool checkMemberStatus(int memberID) const;

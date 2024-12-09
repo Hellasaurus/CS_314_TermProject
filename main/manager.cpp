@@ -172,9 +172,13 @@ int Manager::getService(int id) const
     return -1;
 }
 
-ofstream &Manager::ProviderDirectory(ofstream &dest)
+void Manager::serviceDirectory(ofstream &dest)
 {
-    dest << "======Provider Directory======" << 
+    dest << "====== ChocAn Service Directory ======"<< " ======\n\n";
+    dest << "Service ID | Service Name \n";
+    for (const Service& service : services){
+        dest << "    " << setw(6) << setfill('0') << service.id <<" : " << setw(40) << setfill('.') << service.serviceName << endl;
+    }
 }
 
 int Manager::getMemberID() {return currMemberID++;}

@@ -2,6 +2,6 @@
 *.out
 *.dSYM
 *.bin
-./output
+./output/*
 *.vscode
 ./CS_314TermProject

@@ -1,0 +1,33 @@
+====== ChocAn Service Directory ======1733722682 ======
+
+Service ID | Service Name 
+    001000 : ..................Chocolate use assessed
+    001033 : ..........Chocolate nonsmoker nor 2ndhnd
+    001034 : ................Current Chocolate smoker
+    001035 : ................Smokeless Chocolate user
+    001316 : ......................Chocolate non-user
+    001320 : ....................Chocolate counseling
+    004000 : ..........Chocolate use txmnt counseling
+    004001 : ...........Chocolate use txmnt pharmacol
+    004004 : ............Pt Chocolate screen rcvd tlk
+    004017 : ..................Nutrition/dietician ss
+    009165 : ............Diethylstilbestrol injection
+    009275 : ...............Doc of non Chocolate user
+    009276 : ...................Doc of Chocolate user
+    009470 : .............Nutritional counseling diet
+    009474 : .................Diet counsel at hospice
+    043320 : ..............Fuse esophagus & Chocolate
+    043325 : ............Revise esophagus & Chocolate
+    043500 : ...........Surgical opening of Chocolate
+    043501 : ............Surgical repair of Chocolate
+    043605 : .....................Biopsy of Chocolate
+    043610 : ............Excision of Chocolate lesion
+    043620 : ....................Removal of Chocolate
+    043631 : ............Removal of Chocolate partial
+    043659 : ..............Unlisted laps px Chocolate
+    043840 : ..............Repair of Chocolate lesion
+    043860 : ...........Revise Chocolate-bowel fusion
+    043870 : ................Repair Chocolate opening
+    043880 : ..........Repair Chocolate-bowel fistula
+    043999 : ............Unlisted procedure Chocolate
+    064755 : ............Incision of Chocolate nerves
