@@ -1,12 +1,15 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
+#include <algorithm>
 #include <string>
 #include <vector>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <sstream>
+#include <chrono>
+#include <ctime>
 #include "person.h"
 #include "service.h"
 #include "providerReport.h"
@@ -73,11 +76,14 @@ public:
     void loadProviders(bool verbose = false);
     void loadServices(bool verbose = false);
 
-    // get next sequential ID;
+    
+    
+    int getMember(int id) const;
+    int getProvider(int id) const;
+    int getService(int id)const ;
 
     // Get reports
-    string ProviderReport();
-    string ServiceReport();
+    void serviceDirectory(ofstream & dest);
 
     // Check member status
     bool checkMemberStatus(int memberID) const;

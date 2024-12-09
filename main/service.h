@@ -26,4 +26,6 @@ public:
                "Fee: $" + to_string(fee);
     }
 
+    bool operator==(int other) const;
+
 };

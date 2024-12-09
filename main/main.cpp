@@ -25,7 +25,13 @@ int main(int argc, char ** argv) {
 
   myMan.loadMembers();
   myMan.loadProviders();
-  myMan.loadServices(true);
+  myMan.loadServices();
+
+  ofstream ofs("./output/ServiceDirectory.txt",ios_base::out);
+
+  myMan.serviceDirectory(ofs);
+
+  ofs.close();
 
   
   // Address newAddress("test", "test2", "portland", "oregon", "97214");
