@@ -1,16 +1,12 @@
 #include "transaction.h"
 
 // Constructor
-Transaction::Transaction(const string& serviceDate, const string& receiveDate, const string& currDate,
-                         const string& comment, int memberID, int providerID, const Service& service)
-    : serviceDate(serviceDate), receiveDate(receiveDate), currDate(currDate), 
-      comment(comment), memberID(memberID), providerID(providerID), service(service) {}
+Transaction::Transaction(const string& a_serviceDate, const string& a_receiveDate, const string& a_currDate,
+                         const string& a_comment, int a_memberID, int a_providerID, int a_serviceID)
+    : serviceDate(a_serviceDate), receiveDate(ra_eceiveDate), currDate(a_currDate), 
+      comment(a_comment), memberID(a_memberID), providerID(a_providerID), serviceID(a_serviceID) {}
 
 
-// Getter for Service ID
-int Transaction::getServiceId() const {
-    return service.id;
-}
 
 // Getter for Service Name
 string Transaction::getServiceName() const {

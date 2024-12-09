@@ -14,18 +14,14 @@ private:
     string comment;      // Additional comments about the transaction
     int memberID;        // Member ID associated with the transaction
     int providerID;      // Provider ID associated with the transaction
-    Service service;     // Service object associated with the transaction
+    int serviceID;     // Service object associated with the transaction
 
 public:
     // Constructor
-    Transaction(const string& serviceDate, const string& receiveDate, const string& currDate,
-                const string& comment, int memberID, int providerID, const Service& service);
+    Transaction(const string& a_serviceDate, const string& a_receiveDate, const string& a_currDate,
+                const string& a_comment, int a_memberID, int a_providerID, const int a_serviceID);
 
-    // Getters for Service data fields
-    int getServiceId() const;
-    string getServiceName() const;
-    string getServiceDescription() const;
-    double getServiceFee() const;
+
 
     // Getters for individual fields
     string getServiceDate() const;
