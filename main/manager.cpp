@@ -3,12 +3,6 @@
 
 using namespace std;
 
-Manager::Manager(const string& memberFile, const string& providerFile, const string& serviceFile){
-        memberFilePath = memberFile;
-        providerFilePath = providerFile;
-        serviceFilePath = serviceFile;
-    }
-
 void Manager::loadMembers(bool verbose)
 {
     ifstream ifs (memberFilePath.c_str());
