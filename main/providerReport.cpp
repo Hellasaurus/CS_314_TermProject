@@ -37,7 +37,7 @@ void ProviderReport::generate()
     outFile << "Service Date: " << service.getServiceDate() << std::endl;
     outFile << "Receive Date: " << service.getReceiveDate() << std::endl;
     outFile << "Member ID: " << service.getMemberId() << std::endl;
-    outFile << "Service Code: " << service.getServiceCode() << std::endl;
+    outFile << "Service Code: " << service.getServiceId() << std::endl;
     outFile << "Fee: " << service.getServiceFee() << std::endl;
   }
 

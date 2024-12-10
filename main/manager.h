@@ -10,10 +10,12 @@
 #include <sstream>
 #include <chrono>
 #include <ctime>
+
+#include "fwd.h"
+#include "transaction.h"
 #include "person.h"
 #include "service.h"
 #include "providerReport.h"
-#include "transaction.h"
 
 using namespace std;
 
@@ -54,7 +56,6 @@ const int TX_COMMENT_INDEX = 5; // transaction comment index
 class Manager
 {
 private:
-    vector<Transaction> transactions;
     string memberFilePath;   // File path for member data
     string providerFilePath; // File path for provider data
     string serviceFilePath;  // File path for service data
@@ -79,12 +80,7 @@ public:
     vector<Transaction> transactions; // List of all transactions
 
     // Constructor to initialize file paths
-    Manager(const string &memberFile, const string &providerFile, const string &serviceFile)
-    {
-        memberFilePath = memberFile;
-        providerFilePath = providerFile;
-        serviceFilePath = serviceFile;
-    }
+    Manager(const string &memberFile, const string &providerFile, const string &serviceFile);
 
     // Load data from text files
     void loadMembers(bool verbose = false);
@@ -95,7 +91,7 @@ public:
     const Provider *getProvider(int id) const;
     const Service *getService(int id) const;
 
-    const Transaction *getTX(int id) const;
+    const Transaction *getTX(int id) const;                                 // gets a transaction by id
     vector<Transaction> &getTX(Member &query, vector<Transaction> &dest);   // given a member, add associated transactions to dest
     vector<Transaction> &getTX(Provider &query, vector<Transaction> &dest); // given a provider, add associated transactions to dest
 

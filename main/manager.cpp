@@ -2,6 +2,13 @@
 
 using namespace std;
 
+Manager::Manager(const string &memberFile, const string &providerFile, const string &serviceFile)
+{
+    memberFilePath = memberFile;
+    providerFilePath = providerFile;
+    serviceFilePath = serviceFile;
+}
+
 void Manager::loadMembers(bool verbose)
 {
     ifstream ifs(memberFilePath.c_str());
@@ -189,6 +196,16 @@ const Service *Manager::getService(int id) const
     {
         if (services[i] == id)
             return &services[i];
+    }
+    return nullptr;
+}
+
+const Transaction *Manager::getTX(int id) const
+{
+    for (int i = 0; i < transactions.size(); i++)
+    {
+        if (transactions[i] == id)
+            return &transactions[i];
     }
     return nullptr;
 }
