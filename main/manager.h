@@ -76,7 +76,7 @@ public:
     vector<Member> members;        // List of all members
     vector<Provider> providers;    // List of all providers
     vector<Service> services;      // List of all services
-    vector<Transaction> transactions;
+    vector<Transaction> transactions; // List of all transactions
 
     // Constructor to initialize file paths
     Manager(const string& memberFile, const string& providerFile, const string& serviceFile){
@@ -95,6 +95,10 @@ public:
     const Member* getMember(int id) const;
     const Provider* getProvider(int id) const;
     const Service* getService(int id)const ;
+
+    const Transaction* getTX(int id) const;
+    vector<Transaction>& getTX(Member& query, vector<Transaction>& dest); // given a member, add associated transactions to dest
+    vector<Transaction>& getTX(Provider& query, vector<Transaction> & dest); // given a provider, add associated transactions to dest
 
     // Get reports
     void serviceDirectory(ofstream & dest);
