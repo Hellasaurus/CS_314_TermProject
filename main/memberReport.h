@@ -12,17 +12,19 @@
 
 using namespace std;
 
-class memberReport{
-  public:
-    memberReport();
-    memberReport(Member &member);
-    ~memberReport();
-    void Generate();
-    void addService(Transaction& service);
-    void Clear();
-  private:
-    Member member;
-    vector<Transaction> services;
+class memberReport
+{
+public:
+  memberReport();
+  memberReport(Member &member);
+  ~memberReport();
+  void Generate();
+  void addService(Transaction &service);
+  void Clear();
+
+private:
+  Member member;
+  vector<Transaction> services;
 };
 
 #endif

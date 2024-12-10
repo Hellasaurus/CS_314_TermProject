@@ -12,20 +12,21 @@
 
 using namespace std;
 
-class ProviderReport{
-  private:
-    Provider provider;
-    vector<Transaction> services;
-    int num_consultations;
-    double total_fee;
+class ProviderReport
+{
+private:
+  Provider provider;
+  vector<Transaction> services;
+  int num_consultations;
+  double total_fee;
 
-   public:
-    ProviderReport();
-    ProviderReport(Provider&);
-    ~ProviderReport();
-    void generate();
-    void add_transaction(Transaction&);
-    void clear();
+public:
+  ProviderReport();
+  ProviderReport(Provider &);
+  ~ProviderReport();
+  void generate();
+  void add_transaction(Transaction &);
+  void clear();
 };
 
 #endif

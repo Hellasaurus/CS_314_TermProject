@@ -45,19 +45,19 @@ const int SERVICE_COST_INDEX = 3;
 
 const int TX_DATA_COLS = 6;
 const int TX_ID_INDEX = 0;
-const int TX_SVCID_INDEX = 1; // index of the service ID in transaction CSV
-const int TX_PROID_INDEX = 2; // provider id index
-const int TX_MEMID_INDEX = 3; // member id index
+const int TX_SVCID_INDEX = 1;   // index of the service ID in transaction CSV
+const int TX_PROID_INDEX = 2;   // provider id index
+const int TX_MEMID_INDEX = 3;   // member id index
 const int TX_SVCTIME_INDEX = 4; // service time index
 const int TX_COMMENT_INDEX = 5; // transaction comment index
 
-
-class Manager {
+class Manager
+{
 private:
     vector<Transaction> transactions;
-    string memberFilePath;         // File path for member data
-    string providerFilePath;       // File path for provider data
-    string serviceFilePath;        // File path for service data
+    string memberFilePath;   // File path for member data
+    string providerFilePath; // File path for provider data
+    string serviceFilePath;  // File path for service data
     int currMemberID = 1;
     int currProviderID = 1;
     int currServiceID = 1;
@@ -73,13 +73,14 @@ private:
     int getTXID();
 
 public:
-    vector<Member> members;        // List of all members
-    vector<Provider> providers;    // List of all providers
-    vector<Service> services;      // List of all services
+    vector<Member> members;           // List of all members
+    vector<Provider> providers;       // List of all providers
+    vector<Service> services;         // List of all services
     vector<Transaction> transactions; // List of all transactions
 
     // Constructor to initialize file paths
-    Manager(const string& memberFile, const string& providerFile, const string& serviceFile){
+    Manager(const string &memberFile, const string &providerFile, const string &serviceFile)
+    {
         memberFilePath = memberFile;
         providerFilePath = providerFile;
         serviceFilePath = serviceFile;
@@ -90,23 +91,19 @@ public:
     void loadProviders(bool verbose = false);
     void loadServices(bool verbose = false);
 
-    
-    
-    const Member* getMember(int id) const;
-    const Provider* getProvider(int id) const;
-    const Service* getService(int id)const ;
+    const Member *getMember(int id) const;
+    const Provider *getProvider(int id) const;
+    const Service *getService(int id) const;
 
-    const Transaction* getTX(int id) const;
-    vector<Transaction>& getTX(Member& query, vector<Transaction>& dest); // given a member, add associated transactions to dest
-    vector<Transaction>& getTX(Provider& query, vector<Transaction> & dest); // given a provider, add associated transactions to dest
+    const Transaction *getTX(int id) const;
+    vector<Transaction> &getTX(Member &query, vector<Transaction> &dest);   // given a member, add associated transactions to dest
+    vector<Transaction> &getTX(Provider &query, vector<Transaction> &dest); // given a provider, add associated transactions to dest
 
     // Get reports
-    void serviceDirectory(ofstream & dest);
+    void serviceDirectory(ofstream &dest);
 
     // Check member status
     int checkMemberStatus(int memberID) const;
-
-
 };
 
 #endif // MANAGER_H

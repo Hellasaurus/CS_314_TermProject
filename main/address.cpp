@@ -1,4 +1,4 @@
-#include  "address.h"
+#include "address.h"
 #include <iostream>
 
 Address::Address()
@@ -18,7 +18,8 @@ Address::Address(string newLine1, string newLine2, string newCity, string newSta
   state = newState;
   zip = newZip;
 }
-bool Address::update(string newLine1, string newLine2, string newCity, string newState, string newZip){
+bool Address::update(string newLine1, string newLine2, string newCity, string newState, string newZip)
+{
   addr_line_1 = newLine1;
   addr_line_2 = newLine2;
   city = newCity;
@@ -27,7 +28,8 @@ bool Address::update(string newLine1, string newLine2, string newCity, string ne
 
   return true;
 }
-void Address::display(ostream& outFile) const{
+void Address::display(ostream &outFile) const
+{
   outFile << "Address Line 1: " << addr_line_1 << endl;
   outFile << "Address Line 2: " << addr_line_2 << endl;
   outFile << "City: " << city << endl;
@@ -35,7 +37,8 @@ void Address::display(ostream& outFile) const{
   outFile << "Zip: " << zip << endl;
 }
 
-void Address::display() const{
+void Address::display() const
+{
   cout << "Address Line 1: " << addr_line_1 << endl;
   cout << "Address Line 2: " << addr_line_2 << endl;
   cout << "City: " << city << endl;

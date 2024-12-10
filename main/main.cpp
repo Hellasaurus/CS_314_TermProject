@@ -1,5 +1,5 @@
 // main.cpp
-// CS 314 Group 7 
+// CS 314 Group 7
 // Fall 2024
 
 #include <stdio.h>
@@ -17,7 +17,8 @@ const string memPath = "./users/users_10.csv";
 const string proPath = "./users/provider_list.csv";
 const string svcPath = "./users/service_list.csv";
 
-int main(int argc, char ** argv) {
+int main(int argc, char **argv)
+{
 
   cout.imbue(locale("en_US.UTF-8")); // formats money type
 
@@ -27,13 +28,12 @@ int main(int argc, char ** argv) {
   myMan.loadProviders();
   myMan.loadServices();
 
-  ofstream ofs("./output/ServiceDirectory.txt",ios_base::out);
+  ofstream ofs("./output/ServiceDirectory.txt", ios_base::out);
 
   myMan.serviceDirectory(ofs);
 
   ofs.close();
 
-  
   // Address newAddress("test", "test2", "portland", "oregon", "97214");
   // newAddress.display();
   // newAddress.update("test", "test2", "salem", "oregon", "97303");
