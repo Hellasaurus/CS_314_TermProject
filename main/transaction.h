@@ -3,6 +3,7 @@
 
 #include <string>
 #include "service.h"  // Include the Service class header
+#include "manager.h"
 
 using namespace std;
 
@@ -10,16 +11,16 @@ class Transaction {
 private:
     string serviceDate;  // Date of the service
     string receiveDate;  // Date the transaction was received
-    string currDate;     // Current date of transaction processing
     string comment;      // Additional comments about the transaction
     int memberID;        // Member ID associated with the transaction
     int providerID;      // Provider ID associated with the transaction
-    Service service;     // Service object associated with the transaction
+    int serviceID;     // Service object associated with the transaction
+    const Manager * manager;
 
 public:
     // Constructor
-    Transaction(const string& serviceDate, const string& receiveDate, const string& currDate,
-                const string& comment, int memberID, int providerID, const Service& service);
+    Transaction(const string& serviceDate, const string& receiveDate,
+                const string& comment, int memberID, int providerID, int service, const Manager& a_manager);
 
     // Getters for Service data fields
     int getServiceId() const;

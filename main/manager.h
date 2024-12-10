@@ -13,6 +13,7 @@
 #include "person.h"
 #include "service.h"
 #include "providerReport.h"
+#include "transaction.h"
 
 using namespace std;
 
@@ -22,6 +23,10 @@ const int MEMBER_ADDRESS_1_INDEX = 1;
 const int MEMBER_CITY_INDEX = 2;
 const int MEMBER_STATE_INDEX = 3;
 const int MEMBER_ZIP_INDEX = 4;
+
+const int MEMBER_STATUS_GOOD = 1;
+const int MEMBER_STATUS_INACTIVE = 0;
+const int MEMBER_STATUS_DNE = -1;
 
 const bool MEMBER_DEFAULT_STATUS = true;
 
@@ -63,6 +68,7 @@ public:
     vector<Member> members;        // List of all members
     vector<Provider> providers;    // List of all providers
     vector<Service> services;      // List of all services
+    vector<Transaction> transactions;
 
     // Constructor to initialize file paths
     Manager(const string& memberFile, const string& providerFile, const string& serviceFile){
@@ -78,15 +84,15 @@ public:
 
     
     
-    int getMember(int id) const;
-    int getProvider(int id) const;
-    int getService(int id)const ;
+    const Member* getMember(int id) const;
+    const Provider* getProvider(int id) const;
+    const Service* getService(int id)const ;
 
     // Get reports
     void serviceDirectory(ofstream & dest);
 
     // Check member status
-    bool checkMemberStatus(int memberID) const;
+    int checkMemberStatus(int memberID) const;
 
 
 };

@@ -149,27 +149,24 @@ void Manager::loadServices(bool verbose)
 }
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
-/// @return - if successful, returns index of the matching value, -1 otherwise. 
-int Manager::getMember(int id) const
+const Member* Manager::getMember(int id) const
 {
-    for (int i = 0; i < members.size(); i++) {if (members[i] == id) return i;}
-    return -1;
+    for (int i = 0; i < members.size(); i++) {if (members[i] == id) return &members[i];}
+    return nullptr;
 }
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
-/// @return - if successful, returns index of the matching value, -1 otherwise. 
-int Manager::getProvider(int id) const
+const Provider* Manager::getProvider(int id) const
 {
-    for (int i = 0; i < providers.size(); i++) {if (providers[i] == id) return i;}
-    return -1;
+    for (int i = 0; i < providers.size(); i++) {if (providers[i] == id) return &providers[i];}
+    return nullptr;
 }
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
-/// @return - if successful, returns index of the matching value, -1 otherwise. 
-int Manager::getService(int id) const
+const Service*  Manager::getService(int id) const
 {
-    for (int i = 0; i < services.size(); i++) {if (services[i] == id) return i;}
-    return -1;
+    for (int i = 0; i < services.size(); i++) {if (services[i] == id) return &services[i];}
+    return nullptr;
 }
 
 void Manager::serviceDirectory(ofstream &dest)
@@ -179,6 +176,14 @@ void Manager::serviceDirectory(ofstream &dest)
     for (const Service& service : services){
         dest << "    " << setw(6) << setfill('0') << service.id <<" : " << setw(40) << setfill('.') << service.serviceName << endl;
     }
+}
+
+int Manager::checkMemberStatus(int memberID) const
+{
+    const Member * memptr = getMember(memberID);
+    if (memptr == nullptr) return MEMBER_STATUS_DNE;
+    if (memptr -> status) return MEMBER_STATUS_GOOD;
+    return MEMBER_STATUS_INACTIVE;
 }
 
 int Manager::getMemberID() {return currMemberID++;}
