@@ -132,7 +132,7 @@ void Manager::loadServices(bool verbose)
             else srvData[i] += c;
         }
 
-        //initialize a SERVICE with collected data and add it to the vector
+        //initialize a service with collected data and add it to the vector
         services.push_back(
             Service(
                 stoi(srvData[SERVICE_ID_INDEX]),
