@@ -23,9 +23,9 @@ class ProviderReport{
     ProviderReport();
     ProviderReport(Provider&);
     ~ProviderReport();
-    void Generate();
+    void generate();
     void add_transaction(Transaction&);
-    void Clear();
+    void clear();
 };
 
 #endif

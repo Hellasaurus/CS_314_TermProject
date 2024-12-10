@@ -43,6 +43,14 @@ const int SERVICE_NAME_INDEX = 1;
 const int SERVICE_DESC_INDEX = 2;
 const int SERVICE_COST_INDEX = 3;
 
+const int TX_DATA_COLS = 6;
+const int TX_ID_INDEX = 0;
+const int TX_SVCID_INDEX = 1; // index of the service ID in transaction CSV
+const int TX_PROID_INDEX = 2; // provider id index
+const int TX_MEMID_INDEX = 3; // member id index
+const int TX_SVCTIME_INDEX = 4; // service time index
+const int TX_COMMENT_INDEX = 5; // transaction comment index
+
 
 class Manager {
 private:

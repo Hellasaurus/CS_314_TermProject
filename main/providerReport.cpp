@@ -8,9 +8,9 @@ ProviderReport::ProviderReport(Provider& providerToAdd):provider(providerToAdd),
 }
 
 ProviderReport::~ProviderReport(){
-  Clear();
+  clear();
 }
-void ProviderReport::Generate() {
+void ProviderReport::generate() {
   std::time_t now = std::time(nullptr);
   std::tm *localTime = std::localtime(&now);
 
@@ -45,7 +45,7 @@ void ProviderReport::add_transaction(Transaction& service){
   num_consultations++;
   total_fee += service.getServiceFee();
 }
-void ProviderReport::Clear(){
+void ProviderReport::clear(){
   services.clear();
   num_consultations = 0;
   total_fee = 0.0;
