@@ -16,6 +16,7 @@ using namespace std;
 const string memPath = "./users/users_10.csv";
 const string proPath = "./users/provider_list.csv";
 const string svcPath = "./users/service_list.csv";
+const string PRO_DIRECTORY_PATH = "./output/ServiceDirectory.txt";
 
 const size_t MAX_ARG_LEN = 100;
 
@@ -36,9 +37,9 @@ This program can be run in the following demo modes:\n\
 \t-v : verbose\n\n";
 
 int parseopt(int argc, char** argv, int& verbose);
-int managerTerminal(Manager& man);
-int providerTerminal(Manager& man);
-int accountingTerminal(Manager& man);
+int managerTerminal(Manager& man, int& verbose);
+int providerTerminal(Manager& man, int& verbose);
+int accountingTerminal(Manager& man, int& verbose);
 
 int main(int argc, char** argv) {
     cout.imbue(locale("en_US.UTF-8"));
@@ -65,18 +66,12 @@ int main(int argc, char** argv) {
 
     switch (mode) {
         case MODE_PRO:
-            mode = providerTerminal(myMan);
+            mode = providerTerminal(myMan, verbose);
             break;
 
         default:
             break;
     }
-
-    ofstream ofs("./output/ServiceDirectory.txt", ios_base::out);
-
-    myMan.serviceDirectory(ofs);
-
-    ofs.close();
 
     // Address newAddress("test", "test2", "portland", "oregon", "97214");
     // newAddress.display();
@@ -139,10 +134,15 @@ int parseopt(int argc, char** argv, int& verbose) {
     return mode;
 }
 
-int providerTerminal(Manager& man) {
+int providerTerminal(Manager& man, int& verbose) {
     // get the provider's ID
     int currID = -1;
     Provider currProvider;
+    // loop control
+    bool done = false;
+    char c;
+
+    ofstream ofs;
 
     for (int i = 0; i < 10; i++) {
         cout << "Please enter your provider ID Number:\n";
@@ -162,6 +162,63 @@ int providerTerminal(Manager& man) {
     cout << "Access Granted!\n"
          << "Provider Info:\n";
     currProvider.display();
+
+    while (!done) {
+        cout << "\n\
+Choose an option:\n\
+\tv : Validate member's status\n\
+\tr : Request Provider Directory\n\
+\tt : Create a transaction\n\
+\tq : Exit\n\n";
+
+        cin >> c;
+        cin.ignore(1000, '\n');
+
+        switch (c) {
+            case 'v':
+                // verify member number
+                for (int i = 0; i < 10; i++) {
+                    cout << "Please enter the Member number:\n";
+                    cin >> currID;
+                    cin.ignore(1000, '\n');
+                    const Member* mem = man.getMember(currID);
+                    if (mem) {
+                        cout << "This member's status is: ";
+                        cout << (mem->checkStatus() ? "Active" : "Inactive");
+                        cout << endl;
+                        i += 100;
+
+                    } else if (mem == nullptr) {
+                        cout << "Unable to find member. Please double check the number" << endl;
+                        i += 100;
+
+                    } else {
+                        cout << "Invalid item Number! Try again.\n";
+                    }
+                }
+                break;
+
+            case 'r':
+                ofs.open(PRO_DIRECTORY_PATH, ios_base::out);
+                cout << (verbose ? "Creating Service Directory...\n" : "");
+                if (ofs.is_open()) {
+                    man.serviceDirectory(ofs);
+                    ofs.close();
+                    cout << "Created the service directory at: " << PRO_DIRECTORY_PATH;
+                } else {
+                    cout << "Something went wrong! Unable to create the directory.\n";
+                }
+                break;
+            case 'q':
+                cout << "Exiting program...\n";
+                exit(EXIT_SUCCESS);
+                break;
+
+            default:
+                cout << "invalid option: " << c << endl;
+                break;
+        }
+    }
 
     return 0;
 }

@@ -16,8 +16,8 @@ class Transaction {
     string comment;      // Additional comments about the transaction
     int memberID;        // Member ID associated with the transaction
     int providerID;      // Provider ID associated with the transaction
-    int serviceID;       // Service object associated with the transaction
-    int transactionID;
+    int serviceID;       // Service ID associated with the transaction
+    int transactionID;   // Transaction ID for this object
     const Manager *manager;
 
     // Constructor
