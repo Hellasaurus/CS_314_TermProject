@@ -36,6 +36,7 @@ This program can be run in the following demo modes:\n\
 \t-v : verbose\n\n";
 
 int parseopt(int argc, char** argv, int& verbose);
+int managerTerminal();
 
 int main(int argc, char** argv) {
     // bail if no argument
@@ -55,9 +56,18 @@ int main(int argc, char** argv) {
     // initialize manager
     Manager myMan = Manager(memPath, proPath, svcPath);
 
-    myMan.loadMembers();
-    myMan.loadProviders();
-    myMan.loadServices();
+    myMan.loadMembers(verbose);
+    myMan.loadProviders(verbose);
+    myMan.loadServices(verbose);
+
+    switch (mode) {
+        case MODE_PRO:
+            /* code */
+            break;
+
+        default:
+            break;
+    }
 
     ofstream ofs("./output/ServiceDirectory.txt", ios_base::out);
 
@@ -73,56 +83,59 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// parses the command line, returning an int indicating the chosen mode.
 int parseopt(int argc, char** argv, int& verbose) {
     char arg[MAX_ARG_LEN];
 
     int mode = MODE_INVALID;
 
-    {
-        for (int i = 0; i < argc; i++) {
-            strncpy(arg, argv[i], MAX_ARG_LEN);
-            if (arg[0] == '-') {
-                switch (arg[1]) {
-                    case 'h':  // help mode
-                    case 'H':
-                        return MODE_HELP;
-                        break;
+    for (int i = 0; i < argc; i++) {
+        strncpy(arg, argv[i], MAX_ARG_LEN);
+        if (arg[0] == '-') {
+            switch (arg[1]) {
+                case 'h':  // help mode
+                case 'H':
+                    return MODE_HELP;
+                    break;
 
-                    case 'v':  // verbosity
-                    case 'V':
-                        cout << "Verbosity has been increased!\n";
-                        verbose++;
-                        break;
+                case 'v':  // verbosity
+                case 'V':
+                    cout << "Verbosity has been increased!\n";
+                    verbose++;
+                    break;
 
-                    case 'm':  // manager mode
-                    case 'M':
-                        if (mode == MODE_INVALID) {
-                            mode = MODE_MGMT;
-                            cout << "Starting program in manager mode...\n";
-                        }
-                        break;
-                    case 'p':  // provider mode
-                    case 'P':
-                        if (mode == MODE_INVALID) {
-                            mode = MODE_PRO;
-                            cout << "Starting Program in provider mode...\n";
-                        }
-                        break;
+                case 'm':  // manager mode
+                case 'M':
+                    if (mode == MODE_INVALID) {
+                        mode = MODE_MGMT;
+                        cout << "Starting program in manager mode...\n";
+                    }
+                    break;
+                case 'p':  // provider mode
+                case 'P':
+                    if (mode == MODE_INVALID) {
+                        mode = MODE_PRO;
+                        cout << "Starting Program in provider mode...\n";
+                    }
+                    break;
 
-                    case 'a':  // accounting mode
-                    case 'A':
-                        if (mode == MODE_INVALID) {
-                            mode = MODE_ACC;
-                            cout << "Starting Program in Accounting mode...\n";
-                        }
-                        break;
+                case 'a':  // accounting mode
+                case 'A':
+                    if (mode == MODE_INVALID) {
+                        mode = MODE_ACC;
+                        cout << "Starting Program in Accounting mode...\n";
+                    }
+                    break;
 
-                    default:
-                        mode = MODE_HELP;
-                        break;
-                }
+                default:
+                    mode = MODE_HELP;
+                    break;
             }
         }
     }
     return mode;
+}
+
+int managerTerminal() {
+    return 0;
 }
