@@ -14,13 +14,12 @@
 using namespace std;
 
 class ProviderReport {
-   private:
+   public:
     Provider provider;
     vector<Transaction> services;
     int num_consultations;
     double total_fee;
 
-   public:
     ProviderReport();
     ProviderReport(Provider &);
     ~ProviderReport();
