@@ -58,6 +58,7 @@ void Manager::loadMembers(bool verbose)
             members.back().display();
         }
     }
+    ifs.close();
 }
 
 void Manager::loadProviders(bool verbose)
@@ -112,6 +113,7 @@ void Manager::loadProviders(bool verbose)
             providers.back().display();
         }
     }
+    ifs.close();
 }
 
 void Manager::loadServices(bool verbose)
@@ -165,6 +167,7 @@ void Manager::loadServices(bool verbose)
             services.back().display();
         }
     }
+    ifs.close();
 }
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
@@ -208,6 +211,30 @@ const Transaction *Manager::getTX(int id) const
             return &transactions[i];
     }
     return nullptr;
+}
+
+vector<Transaction> &Manager::getTX(Member &query, vector<Transaction> &dest)
+{
+    for (Transaction &i : transactions)
+    {
+        if (query == i.memberID)
+        {
+            dest.push_back(Transaction(i));
+        }
+    }
+    return dest;
+}
+
+vector<Transaction> &Manager::getTX(Provider &query, vector<Transaction> &dest)
+{
+    for (Transaction &i : transactions)
+    {
+        if (query == i.providerID)
+        {
+            dest.push_back(Transaction(i));
+        }
+    }
+    return dest;
 }
 
 void Manager::serviceDirectory(ofstream &dest)

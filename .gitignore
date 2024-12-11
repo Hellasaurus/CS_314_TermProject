@@ -2,6 +2,5 @@
 *.out
 *.dSYM
 *.bin
-./output/*
 *.vscode
 ./CS314_TermProject
