@@ -7,6 +7,7 @@
 
 using namespace std;
 
+//AccountReport class to generate EFT report and AP report
 class AccountReport
 {
     public:
