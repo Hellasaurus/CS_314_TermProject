@@ -47,13 +47,13 @@ void Person::setAddress(const Address &n_address) {
 
 // Display person's information
 void Person::display(ostream &outFile) const {
-    outFile << "\nPerson's name: " << name << endl;
+    outFile << "\nName: " << name << endl;
     outFile << "ID #: " << id << endl;
     outFile << "Address is: ";
     address.display(outFile);
 }
 void Person::display() const {
-    cout << "\nPerson's name: " << name << endl;
+    cout << "\nName: " << name << endl;
     cout << "ID #: " << id << endl;
     cout << "Address is: ";
     address.display();

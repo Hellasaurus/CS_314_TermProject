@@ -28,7 +28,7 @@ bool Address::update(string newLine1, string newLine2, string newCity, string ne
 }
 void Address::display(ostream &outFile) const {
     outFile << "Address Line 1: " << addr_line_1 << endl;
-    outFile << "Address Line 2: " << addr_line_2 << endl;
+    // outFile << "Address Line 2: " << addr_line_2 << endl;
     outFile << "City: " << city << endl;
     outFile << "State: " << state << endl;
     outFile << "Zip: " << zip << endl;
@@ -36,7 +36,7 @@ void Address::display(ostream &outFile) const {
 
 void Address::display() const {
     cout << "Address Line 1: " << addr_line_1 << endl;
-    cout << "Address Line 2: " << addr_line_2 << endl;
+    // cout << "Address Line 2: " << addr_line_2 << endl;
     cout << "City: " << city << endl;
     cout << "State: " << state << endl;
     cout << "Zip: " << zip << endl;

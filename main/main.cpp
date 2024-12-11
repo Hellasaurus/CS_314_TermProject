@@ -36,9 +36,12 @@ This program can be run in the following demo modes:\n\
 \t-v : verbose\n\n";
 
 int parseopt(int argc, char** argv, int& verbose);
-int managerTerminal();
+int managerTerminal(Manager& man);
+int providerTerminal(Manager& man);
+int accountingTerminal(Manager& man);
 
 int main(int argc, char** argv) {
+    cout.imbue(locale("en_US.UTF-8"));
     // bail if no argument
     if (argc <= 1) {
         cout << helpstring;
@@ -62,7 +65,7 @@ int main(int argc, char** argv) {
 
     switch (mode) {
         case MODE_PRO:
-            /* code */
+            mode = providerTerminal(myMan);
             break;
 
         default:
@@ -136,6 +139,29 @@ int parseopt(int argc, char** argv, int& verbose) {
     return mode;
 }
 
-int managerTerminal() {
+int providerTerminal(Manager& man) {
+    // get the provider's ID
+    int currID = -1;
+    Provider currProvider;
+
+    for (int i = 0; i < 10; i++) {
+        cout << "Please enter your provider ID Number:\n";
+        cin >> currID;
+        cin.ignore(100, '\n');
+        if (man.getProvider(currID)) {
+            currProvider = *man.getProvider(currID);
+            i += 100;
+        } else {
+            cout << "Invalid item Number! Try again.\n";
+        }
+    }
+    if (currID == -1) {
+        cout << "Access denied";
+        exit(EXIT_FAILURE);
+    }
+    cout << "Access Granted!\n"
+         << "Provider Info:\n";
+    currProvider.display();
+
     return 0;
 }
