@@ -1,13 +1,12 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 
-#include <string>
 #include <fstream>
+#include <string>
 
 using namespace std;
-class Address
-{
-public:
+class Address {
+   public:
     Address();
     /// @brief initialize address
     /// @param  address line 1

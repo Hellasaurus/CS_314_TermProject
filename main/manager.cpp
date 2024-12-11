@@ -2,15 +2,13 @@
 
 using namespace std;
 
-Manager::Manager(const string &memberFile, const string &providerFile, const string &serviceFile)
-{
+Manager::Manager(const string &memberFile, const string &providerFile, const string &serviceFile) {
     memberFilePath = memberFile;
     providerFilePath = providerFile;
     serviceFilePath = serviceFile;
 }
 
-void Manager::loadMembers(bool verbose)
-{
+void Manager::loadMembers(bool verbose) {
     ifstream ifs(memberFilePath.c_str());
     stringstream linestream;
     string line;
@@ -22,8 +20,7 @@ void Manager::loadMembers(bool verbose)
 
     char c;
 
-    while (getline(ifs, line))
-    {
+    while (getline(ifs, line)) {
         linestream = stringstream(line);
         // reset count
         i = 0;
@@ -32,9 +29,7 @@ void Manager::loadMembers(bool verbose)
             memData[j] = "";
 
         // create a string for each column
-        while (linestream.get(c))
-        {
-
+        while (linestream.get(c)) {
             if (c == ',')
                 i++;
             else
@@ -52,8 +47,7 @@ void Manager::loadMembers(bool verbose)
                         memData[MEMBER_STATE_INDEX],
                         memData[MEMBER_ZIP_INDEX]),
                 MEMBER_DEFAULT_STATUS));
-        if (verbose)
-        {
+        if (verbose) {
             cout << "Adding member: ";
             members.back().display();
         }
@@ -61,8 +55,7 @@ void Manager::loadMembers(bool verbose)
     ifs.close();
 }
 
-void Manager::loadProviders(bool verbose)
-{
+void Manager::loadProviders(bool verbose) {
     ifstream ifs(providerFilePath.c_str());
     stringstream linestream;
     string line;
@@ -74,8 +67,7 @@ void Manager::loadProviders(bool verbose)
 
     char c;
 
-    while (getline(ifs, line))
-    {
+    while (getline(ifs, line)) {
         linestream = stringstream(line);
         // reset count
         i = 0;
@@ -84,15 +76,12 @@ void Manager::loadProviders(bool verbose)
             proData[j] = "";
 
         // create a string for each column
-        while (linestream.get(c))
-        {
-
+        while (linestream.get(c)) {
             if (c == ',')
                 i++;
-            else if (c == '"')
-            {
+            else if (c == '"') {
                 ;
-            } // ugly way to ignore quotations.
+            }  // ugly way to ignore quotations.
             else
                 proData[i] += c;
         }
@@ -107,8 +96,7 @@ void Manager::loadProviders(bool verbose)
                         proData[PROVIDER_CITY_INDEX],
                         proData[PROVIDER_STATE_INDEX],
                         proData[PROVIDER_ZIP_INDEX])));
-        if (verbose)
-        {
+        if (verbose) {
             cout << "Adding provider: ";
             providers.back().display();
         }
@@ -116,8 +104,7 @@ void Manager::loadProviders(bool verbose)
     ifs.close();
 }
 
-void Manager::loadServices(bool verbose)
-{
+void Manager::loadServices(bool verbose) {
     ifstream ifs(serviceFilePath.c_str());
     if (!ifs.is_open())
         cout << "Service file did not open successfully\n";
@@ -131,8 +118,7 @@ void Manager::loadServices(bool verbose)
 
     char c;
 
-    while (getline(ifs, line))
-    {
+    while (getline(ifs, line)) {
         linestream = stringstream(line);
         // reset count
         i = 0;
@@ -141,15 +127,12 @@ void Manager::loadServices(bool verbose)
             srvData[j] = "";
 
         // create a string for each column
-        while (linestream.get(c))
-        {
-
+        while (linestream.get(c)) {
             if (c == ',')
                 i++;
-            else if (c == '"')
-            {
+            else if (c == '"') {
                 ;
-            } // ugly way to ignore quotations.
+            }  // ugly way to ignore quotations.
             else
                 srvData[i] += c;
         }
@@ -161,8 +144,7 @@ void Manager::loadServices(bool verbose)
                 srvData[SERVICE_NAME_INDEX],
                 srvData[SERVICE_DESC_INDEX],
                 stod(srvData[SERVICE_COST_INDEX]) * 100.0));
-        if (verbose)
-        {
+        if (verbose) {
             cout << "Adding service: ";
             services.back().display();
         }
@@ -171,10 +153,8 @@ void Manager::loadServices(bool verbose)
 }
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
-const Member *Manager::getMember(int id) const
-{
-    for (int i = 0; i < members.size(); i++)
-    {
+const Member *Manager::getMember(int id) const {
+    for (int i = 0; i < members.size(); i++) {
         if (members[i] == id)
             return &members[i];
     }
@@ -182,10 +162,8 @@ const Member *Manager::getMember(int id) const
 }
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
-const Provider *Manager::getProvider(int id) const
-{
-    for (int i = 0; i < providers.size(); i++)
-    {
+const Provider *Manager::getProvider(int id) const {
+    for (int i = 0; i < providers.size(); i++) {
         if (providers[i] == id)
             return &providers[i];
     }
@@ -193,62 +171,49 @@ const Provider *Manager::getProvider(int id) const
 }
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
-const Service *Manager::getService(int id) const
-{
-    for (int i = 0; i < services.size(); i++)
-    {
+const Service *Manager::getService(int id) const {
+    for (int i = 0; i < services.size(); i++) {
         if (services[i] == id)
             return &services[i];
     }
     return nullptr;
 }
 
-const Transaction *Manager::getTX(int id) const
-{
-    for (int i = 0; i < transactions.size(); i++)
-    {
+const Transaction *Manager::getTX(int id) const {
+    for (int i = 0; i < transactions.size(); i++) {
         if (transactions[i] == id)
             return &transactions[i];
     }
     return nullptr;
 }
 
-vector<Transaction> &Manager::getTX(Member &query, vector<Transaction> &dest)
-{
-    for (Transaction &i : transactions)
-    {
-        if (query == i.memberID)
-        {
+vector<Transaction> &Manager::getTX(Member &query, vector<Transaction> &dest) {
+    for (Transaction &i : transactions) {
+        if (query == i.memberID) {
             dest.push_back(Transaction(i));
         }
     }
     return dest;
 }
 
-vector<Transaction> &Manager::getTX(Provider &query, vector<Transaction> &dest)
-{
-    for (Transaction &i : transactions)
-    {
-        if (query == i.providerID)
-        {
+vector<Transaction> &Manager::getTX(Provider &query, vector<Transaction> &dest) {
+    for (Transaction &i : transactions) {
+        if (query == i.providerID) {
             dest.push_back(Transaction(i));
         }
     }
     return dest;
 }
 
-void Manager::serviceDirectory(ofstream &dest)
-{
+void Manager::serviceDirectory(ofstream &dest) {
     dest << "====== ChocAn Service Directory ======" << " ======\n\n";
     dest << "Service ID | Service Name \n";
-    for (const Service &service : services)
-    {
+    for (const Service &service : services) {
         dest << "    " << setw(6) << setfill('0') << service.id << " : " << setw(40) << setfill('.') << service.serviceName << endl;
     }
 }
 
-int Manager::checkMemberStatus(int memberID) const
-{
+int Manager::checkMemberStatus(int memberID) const {
     const Member *memptr = getMember(memberID);
     if (memptr == nullptr)
         return MEMBER_STATUS_DNE;

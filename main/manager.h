@@ -2,20 +2,20 @@
 #define MANAGER_H
 
 #include <algorithm>
-#include <string>
-#include <vector>
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <sstream>
 #include <chrono>
 #include <ctime>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 #include "fwd.h"
-#include "transaction.h"
 #include "person.h"
-#include "service.h"
 #include "providerReport.h"
+#include "service.h"
+#include "transaction.h"
 
 using namespace std;
 
@@ -47,18 +47,17 @@ const int SERVICE_COST_INDEX = 3;
 
 const int TX_DATA_COLS = 6;
 const int TX_ID_INDEX = 0;
-const int TX_SVCID_INDEX = 1;   // index of the service ID in transaction CSV
-const int TX_PROID_INDEX = 2;   // provider id index
-const int TX_MEMID_INDEX = 3;   // member id index
-const int TX_SVCTIME_INDEX = 4; // service time index
-const int TX_COMMENT_INDEX = 5; // transaction comment index
+const int TX_SVCID_INDEX = 1;    // index of the service ID in transaction CSV
+const int TX_PROID_INDEX = 2;    // provider id index
+const int TX_MEMID_INDEX = 3;    // member id index
+const int TX_SVCTIME_INDEX = 4;  // service time index
+const int TX_COMMENT_INDEX = 5;  // transaction comment index
 
-class Manager
-{
-private:
-    string memberFilePath;   // File path for member data
-    string providerFilePath; // File path for provider data
-    string serviceFilePath;  // File path for service data
+class Manager {
+   private:
+    string memberFilePath;    // File path for member data
+    string providerFilePath;  // File path for provider data
+    string serviceFilePath;   // File path for service data
     int currMemberID = 1;
     int currProviderID = 1;
     int currServiceID = 1;
@@ -73,11 +72,11 @@ private:
     /// @brief gets the next ID in sequence
     int getTXID();
 
-public:
-    vector<Member> members;           // List of all members
-    vector<Provider> providers;       // List of all providers
-    vector<Service> services;         // List of all services
-    vector<Transaction> transactions; // List of all transactions
+   public:
+    vector<Member> members;            // List of all members
+    vector<Provider> providers;        // List of all providers
+    vector<Service> services;          // List of all services
+    vector<Transaction> transactions;  // List of all transactions
 
     // Constructor to initialize file paths
     Manager(const string &memberFile, const string &providerFile, const string &serviceFile);
@@ -91,9 +90,9 @@ public:
     const Provider *getProvider(int id) const;
     const Service *getService(int id) const;
 
-    const Transaction *getTX(int id) const;                                 // gets a transaction by id
-    vector<Transaction> &getTX(Member &query, vector<Transaction> &dest);   // given a member, add associated transactions to dest
-    vector<Transaction> &getTX(Provider &query, vector<Transaction> &dest); // given a provider, add associated transactions to dest
+    const Transaction *getTX(int id) const;                                  // gets a transaction by id
+    vector<Transaction> &getTX(Member &query, vector<Transaction> &dest);    // given a member, add associated transactions to dest
+    vector<Transaction> &getTX(Provider &query, vector<Transaction> &dest);  // given a provider, add associated transactions to dest
 
     // Get reports
     void serviceDirectory(ofstream &dest);
@@ -102,4 +101,4 @@ public:
     int checkMemberStatus(int memberID) const;
 };
 
-#endif // MANAGER_H
+#endif  // MANAGER_H

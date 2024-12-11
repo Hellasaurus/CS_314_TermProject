@@ -1,14 +1,13 @@
 #pragma once
 
-#include <string>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
-class Service
-{
-public:
+class Service {
+   public:
     int id;
     string serviceName;
     string description;
@@ -20,8 +19,7 @@ public:
     void display() const;
 
     // Method to get service details as a string
-    string getServiceDetails() const
-    {
+    string getServiceDetails() const {
         return "ID: " + to_string(id) + "\n" +
                "Name: " + serviceName + "\n" +
                "Description: " + description + "\n" +

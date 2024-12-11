@@ -6,10 +6,10 @@
 
 #include "address.h"
 #include "manager.h"
+#include "memberReport.h"
 #include "person.h"
 #include "providerReport.h"
 #include "service.h"
-#include "memberReport.h"
 
 using namespace std;
 
@@ -17,27 +17,29 @@ const string memPath = "./users/users_10.csv";
 const string proPath = "./users/provider_list.csv";
 const string svcPath = "./users/service_list.csv";
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
+    {
+        for (int i = 0; i < argc; i++) {
+                }
+    }
 
-  cout.imbue(locale("en_US.UTF-8")); // formats money type
+    // initialize manager
+    Manager myMan = Manager(memPath, proPath, svcPath);
 
-  Manager myMan = Manager(memPath, proPath, svcPath);
+    myMan.loadMembers();
+    myMan.loadProviders();
+    myMan.loadServices();
 
-  myMan.loadMembers();
-  myMan.loadProviders();
-  myMan.loadServices();
+    ofstream ofs("./output/ServiceDirectory.txt", ios_base::out);
 
-  ofstream ofs("./output/ServiceDirectory.txt", ios_base::out);
+    myMan.serviceDirectory(ofs);
 
-  myMan.serviceDirectory(ofs);
+    ofs.close();
 
-  ofs.close();
+    // Address newAddress("test", "test2", "portland", "oregon", "97214");
+    // newAddress.display();
+    // newAddress.update("test", "test2", "salem", "oregon", "97303");
+    // newAddress.display();
 
-  // Address newAddress("test", "test2", "portland", "oregon", "97214");
-  // newAddress.display();
-  // newAddress.update("test", "test2", "salem", "oregon", "97303");
-  // newAddress.display();
-
-  return 0;
+    return 0;
 }

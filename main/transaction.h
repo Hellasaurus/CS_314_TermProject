@@ -4,20 +4,19 @@
 #include <string>
 
 #include "fwd.h"
-#include "service.h" // Include the Service class header
 #include "manager.h"
+#include "service.h"  // Include the Service class header
 
 using namespace std;
 
-class Transaction
-{
-public:
-    string serviceDate; // Date of the service
-    string receiveDate; // Date the transaction was received
-    string comment;     // Additional comments about the transaction
-    int memberID;       // Member ID associated with the transaction
-    int providerID;     // Provider ID associated with the transaction
-    int serviceID;      // Service object associated with the transaction
+class Transaction {
+   public:
+    string serviceDate;  // Date of the service
+    string receiveDate;  // Date the transaction was received
+    string comment;      // Additional comments about the transaction
+    int memberID;        // Member ID associated with the transaction
+    int providerID;      // Provider ID associated with the transaction
+    int serviceID;       // Service object associated with the transaction
     int transactionID;
     const Manager *manager;
 
@@ -40,4 +39,4 @@ public:
     int getMemberId() const;
 };
 
-#endif // TRANSACTION_H
+#endif  // TRANSACTION_H

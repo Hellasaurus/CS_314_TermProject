@@ -1,22 +1,22 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-#include <iostream>
-#include <iomanip>
-#include <vector>
 #include <cctype>
-#include <cstring>
-#include <string>
 #include <cstdlib>
+#include <cstring>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <string>
+#include <vector>
+
 #include "address.h"
 
 using namespace std;
 
 // Person class
-class Person
-{
-public:
+class Person {
+   public:
     Person();
     Person(int n_id, const string &n_name, const Address &n_address);
 
@@ -35,9 +35,8 @@ public:
 };
 
 // Provider class, derived from Person
-class Provider : public Person
-{
-public:
+class Provider : public Person {
+   public:
     Provider();
     Provider(int n_id, const string &n_name, const Address &n_address);
     bool isMatch(const string &match) const;
@@ -46,9 +45,8 @@ public:
 };
 
 // Member class, derived from Person
-class Member : public Person
-{
-public:
+class Member : public Person {
+   public:
     Member();
     Member(int n_id, const string &n_name, const Address &n_address, bool n_status);
     void display(ostream &) const;

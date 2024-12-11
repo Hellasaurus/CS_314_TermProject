@@ -3,12 +3,10 @@
 // Constructor
 Transaction::Transaction(const string &serviceDate, const string &receiveDate,
                          const string &comment, int memberID, int providerID, int serviceID, int transactionID, const Manager *a_manager)
-    : serviceDate(serviceDate), receiveDate(receiveDate), comment(comment), memberID(memberID),
-      providerID(providerID), serviceID(serviceID), transactionID(transactionID), manager(a_manager) {}
+    : serviceDate(serviceDate), receiveDate(receiveDate), comment(comment), memberID(memberID), providerID(providerID), serviceID(serviceID), transactionID(transactionID), manager(a_manager) {}
 
-bool Transaction::operator==(int other) const
-{
-  return this->transactionID == other;
+bool Transaction::operator==(int other) const {
+    return this->transactionID == other;
 }
 
 // Getter for Service ID

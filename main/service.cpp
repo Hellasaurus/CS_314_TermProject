@@ -2,16 +2,14 @@
 
 using namespace std;
 
-Service::Service(int a_id, const string &a_serviceName, const string &a_description, double a_fee)
-{
+Service::Service(int a_id, const string &a_serviceName, const string &a_description, double a_fee) {
     id = a_id;
     serviceName = a_serviceName;
     description = a_description;
     fee = a_fee;
 }
 
-void Service::display() const
-{
+void Service::display() const {
     streamsize temp = cout.width();
     cout << "id: " << setw(6) << setfill('0') << id
          << setw(temp) << setfill(' ')
