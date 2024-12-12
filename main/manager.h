@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <ctime>
+#include <format>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -45,19 +46,19 @@ const int SERVICE_NAME_INDEX = 1;
 const int SERVICE_DESC_INDEX = 2;
 const int SERVICE_COST_INDEX = 3;
 
-const int TX_DATA_COLS = 6;
-const int TX_ID_INDEX = 0;
-const int TX_SVCID_INDEX = 1;    // index of the service ID in transaction CSV
-const int TX_PROID_INDEX = 2;    // provider id index
-const int TX_MEMID_INDEX = 3;    // member id index
+const int TX_DATA_COLS = 5;
+const int TX_PROID_INDEX = 0;    // provider id index
+const int TX_MEMID_INDEX = 1;    // member id index
+const int TX_SVCID_INDEX = 2;    // index of the service ID in transaction CSV
 const int TX_SVCTIME_INDEX = 4;  // service time index
-const int TX_COMMENT_INDEX = 5;  // transaction comment index
+const int TX_COMMENT_INDEX = 3;  // transaction comment index
 
 class Manager {
    private:
     string memberFilePath;    // File path for member data
     string providerFilePath;  // File path for provider data
     string serviceFilePath;   // File path for service data
+    string txFilePath;
     int currMemberID = 1;
     int currProviderID = 1;
     int currServiceID = 1;
@@ -79,12 +80,13 @@ class Manager {
     vector<Transaction> transactions;  // List of all transactions
 
     // Constructor to initialize file paths
-    Manager(const string &memberFile, const string &providerFile, const string &serviceFile);
+    Manager(const string &memberFile, const string &providerFile, const string &serviceFile, const string &txFile);
 
     // Load data from text files
     void loadMembers(bool verbose = false);
     void loadProviders(bool verbose = false);
     void loadServices(bool verbose = false);
+    void loadTX(bool verbose = false);
 
     const Member *getMember(int id) const;
     const Provider *getProvider(int id) const;
@@ -93,6 +95,9 @@ class Manager {
     const Transaction *getTX(int id) const;                                  // gets a transaction by id
     vector<Transaction> &getTX(Member &query, vector<Transaction> &dest);    // given a member, add associated transactions to dest
     vector<Transaction> &getTX(Provider &query, vector<Transaction> &dest);  // given a provider, add associated transactions to dest
+
+    // Creates a transaction with user input, returning the id of the resulting transaction if successful, or -1 if the transaction failed.
+    int createTransaction();
 
     // Get reports
     void serviceDirectory(ofstream &dest);

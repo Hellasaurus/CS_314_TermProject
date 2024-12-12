@@ -12,7 +12,7 @@ using namespace std;
 class Transaction {
    public:
     string serviceDate;  // Date of the service
-    string receiveDate;  // Date the transaction was received
+    string sysDate;      // Date the transaction was received
     string comment;      // Additional comments about the transaction
     int memberID;        // Member ID associated with the transaction
     int providerID;      // Provider ID associated with the transaction
@@ -25,6 +25,7 @@ class Transaction {
                 const string &comment, int memberID, int providerID, int service, int transactionID, const Manager *a_manager);
 
     bool operator==(int other) const;
+    friend ostream &operator<<(ostream &dest, Transaction &src);
 
     // Getters for Service data fields
     int getServiceId() const;

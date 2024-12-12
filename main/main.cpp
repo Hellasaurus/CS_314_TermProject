@@ -13,9 +13,10 @@
 
 using namespace std;
 
-const string memPath = "./users/users_10.csv";
+const string memPath = "./users/users_10000.csv";
 const string proPath = "./users/provider_list.csv";
 const string svcPath = "./users/service_list.csv";
+const string txPath = "./users/transactions_list.csv";
 const string PRO_DIRECTORY_PATH = "./output/ServiceDirectory.txt";
 
 const size_t MAX_ARG_LEN = 100;
@@ -58,11 +59,12 @@ int main(int argc, char** argv) {
     }
 
     // initialize manager
-    Manager myMan = Manager(memPath, proPath, svcPath);
+    Manager myMan = Manager(memPath, proPath, svcPath, txPath);
 
     myMan.loadMembers(verbose);
     myMan.loadProviders(verbose);
     myMan.loadServices(verbose);
+    myMan.loadTX(verbose);
 
     switch (mode) {
         case MODE_PRO:
@@ -155,7 +157,7 @@ int providerTerminal(Manager& man, int& verbose) {
             cout << "Invalid item Number! Try again.\n";
         }
     }
-    if (currID == -1) {
+    if (currID < 0) {
         cout << "Access denied";
         exit(EXIT_FAILURE);
     }
@@ -163,7 +165,7 @@ int providerTerminal(Manager& man, int& verbose) {
          << "Provider Info:\n";
     currProvider.display();
 
-    while (!done) {
+    for (int i = 0; i < 100; i++) {
         cout << "\n\
 Choose an option:\n\
 \tv : Validate member's status\n\
@@ -181,6 +183,7 @@ Choose an option:\n\
                     cout << "Please enter the Member number:\n";
                     cin >> currID;
                     cin.ignore(1000, '\n');
+                    cin.clear();
                     const Member* mem = man.getMember(currID);
                     if (mem) {
                         cout << "This member's status is: ";
@@ -209,13 +212,19 @@ Choose an option:\n\
                     cout << "Something went wrong! Unable to create the directory.\n";
                 }
                 break;
+
+            case 't':
+                cout << "Create a Transaction: \n";
+
+                break;
             case 'q':
                 cout << "Exiting program...\n";
                 exit(EXIT_SUCCESS);
                 break;
 
             default:
-                cout << "invalid option: " << c << endl;
+                cout << "invalid selection: " << c << endl;
+
                 break;
         }
     }

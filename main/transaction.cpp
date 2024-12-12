@@ -3,10 +3,21 @@
 // Constructor
 Transaction::Transaction(const string &serviceDate, const string &receiveDate,
                          const string &comment, int memberID, int providerID, int serviceID, int transactionID, const Manager *a_manager)
-    : serviceDate(serviceDate), receiveDate(receiveDate), comment(comment), memberID(memberID), providerID(providerID), serviceID(serviceID), transactionID(transactionID), manager(a_manager) {}
+    : serviceDate(serviceDate), sysDate(receiveDate), comment(comment), memberID(memberID), providerID(providerID), serviceID(serviceID), transactionID(transactionID), manager(a_manager) {}
 
 bool Transaction::operator==(int other) const {
     return this->transactionID == other;
+}
+
+ostream &operator<<(ostream &dest, Transaction &src) {
+    dest << "Transaction id: " << src.transactionID
+         << " Provider id: " << src.providerID
+         << " Member id: " << src.memberID
+         << " Service id: " << src.serviceID << endl
+         << " Service date: " << src.serviceDate << endl
+         << " Record created: " << src.sysDate;
+
+    return dest;
 }
 
 // Getter for Service ID
@@ -25,6 +36,6 @@ int Transaction::getMemberId() const { return memberID; }
 
 string Transaction::getServiceDate() const { return serviceDate; }
 
-string Transaction::getReceiveDate() const { return receiveDate; }
+string Transaction::getReceiveDate() const { return sysDate; }
 
 int Transaction::getProviderId() const { return providerID; }

@@ -2,10 +2,11 @@
 
 using namespace std;
 
-Manager::Manager(const string &memberFile, const string &providerFile, const string &serviceFile) {
+Manager::Manager(const string &memberFile, const string &providerFile, const string &serviceFile, const string &txFile) {
     memberFilePath = memberFile;
     providerFilePath = providerFile;
     serviceFilePath = serviceFile;
+    txFilePath = txFile;
 }
 
 void Manager::loadMembers(bool verbose) {
@@ -151,6 +152,68 @@ void Manager::loadServices(bool verbose) {
     }
     ifs.close();
 }
+void Manager::loadTX(bool verbose) {
+    ifstream ifs(txFilePath.c_str());
+    if (!ifs.is_open())
+        cout << "Transaction file did not open successfully\n";
+    stringstream linestream;
+    string line;
+
+    // contains a string indicating each data member.
+    string txData[TX_DATA_COLS];
+    // data transaction index
+    int i;
+
+    char c;
+
+    while (getline(ifs, line)) {
+        linestream = stringstream(line);
+        // reset count
+        i = 0;
+        // clear strings
+        for (int j = 0; j < TX_DATA_COLS; j++)
+            txData[j] = "";
+
+        // create a string for each column
+        while (linestream.get(c)) {
+            if (c == ',')
+                i++;
+            else if (c == '"') {
+                ;
+            }  // ugly way to ignore quotations.
+            else
+                txData[i] += c;
+        }
+
+        // initialize a service with collected data and add it to the vector
+
+        char timeStr[100];
+
+        chrono::system_clock::time_point now = chrono::system_clock::now();
+        time_t now_c = chrono::system_clock::to_time_t(now);
+        const tm *currtm = localtime(&now_c);
+
+        strftime(timeStr, 99, "%d-%m-%Y %H:%M:%OS", currtm);
+
+        transactions.push_back(
+            Transaction(
+                txData[TX_SVCTIME_INDEX],
+                string(timeStr),
+                txData[TX_COMMENT_INDEX],
+                atoi(txData[TX_MEMID_INDEX].c_str()),
+                atoi(txData[TX_PROID_INDEX].c_str()),
+                atoi(txData[TX_SVCID_INDEX].c_str()),
+                getTXID(),
+                this));
+
+        if (verbose) {
+            cout << "Adding transaction: ";
+            cout << transactions.back() << endl;
+        }
+    }
+    ifs.close();
+}
+
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
 const Member *Manager::getMember(int id) const {
@@ -203,6 +266,20 @@ vector<Transaction> &Manager::getTX(Provider &query, vector<Transaction> &dest) 
         }
     }
     return dest;
+}
+
+int Manager::createTransaction() {
+    int memid;
+    int proid;
+    int serid;
+
+    string serviceDate;
+    string sysDate;
+
+    string rawcom;
+    string comment;
+
+    transactions.push_back(Transaction(serviceDate, sysDate, comment, memid, proid, serid, getTXID(), this));
 }
 
 void Manager::serviceDirectory(ofstream &dest) {
