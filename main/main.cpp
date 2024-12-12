@@ -71,14 +71,13 @@ int main(int argc, char** argv) {
             mode = providerTerminal(myMan, verbose);
             break;
 
+        case MODE_ACC:
+            mode = accountingTerminal(myMan, verbose);
+            break;
+
         default:
             break;
     }
-
-    // Address newAddress("test", "test2", "portland", "oregon", "97214");
-    // newAddress.display();
-    // newAddress.update("test", "test2", "salem", "oregon", "97303");
-    // newAddress.display();
 
     return 0;
 }
@@ -232,4 +231,45 @@ Choose an option:\n\
     }
 
     return 0;
+}
+
+int accountingTerminal(Manager& man, int& verbose) {
+    char c;
+    for (int i = 0; i < 100; i++) {
+        cout << "\n\
+Choose an option:\n\
+\tr : run weekly accounting procedure\n\
+\tq : Exit\n\n";
+
+        cin >> c;
+        cin.ignore(1000, '\n');
+
+        switch (c) {
+            case 'r':
+                // generate member reports;
+                for (Member mem : man.members) {
+                    memberReport report(mem);
+                    for (Transaction tx : man.transactions) {
+                        if (tx.memberID == mem.id) {
+                            report.addService(tx);
+                        }
+                    }
+                    if (report.size() > 0) {
+                        report.Generate();
+                    }
+                }
+                // generate provider reports;
+
+                // generate EFT report;
+                // generate summary report;
+
+                break;
+            case 'q':
+                exit(EXIT_SUCCESS);
+                break;
+            default:
+                cout << "invalid input.";
+                break;
+        }
+    }
 }

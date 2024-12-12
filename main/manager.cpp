@@ -217,7 +217,7 @@ void Manager::loadTX(bool verbose) {
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
 const Member *Manager::getMember(int id) const {
-    for (int i = 0; i < members.size(); i++) {
+    for (size_t i = 0; i < members.size(); i++) {
         if (members[i] == id)
             return &members[i];
     }
@@ -226,7 +226,7 @@ const Member *Manager::getMember(int id) const {
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
 const Provider *Manager::getProvider(int id) const {
-    for (int i = 0; i < providers.size(); i++) {
+    for (size_t i = 0; i < providers.size(); i++) {
         if (providers[i] == id)
             return &providers[i];
     }
@@ -235,7 +235,7 @@ const Provider *Manager::getProvider(int id) const {
 /// @brief search for a value by ID
 /// @param id - The ID we are searching for
 const Service *Manager::getService(int id) const {
-    for (int i = 0; i < services.size(); i++) {
+    for (size_t i = 0; i < services.size(); i++) {
         if (services[i] == id)
             return &services[i];
     }
@@ -243,7 +243,7 @@ const Service *Manager::getService(int id) const {
 }
 
 const Transaction *Manager::getTX(int id) const {
-    for (int i = 0; i < transactions.size(); i++) {
+    for (size_t i = 0; i < transactions.size(); i++) {
         if (transactions[i] == id)
             return &transactions[i];
     }

@@ -5,7 +5,7 @@ memberReport::memberReport() : member() {
 }
 
 memberReport::memberReport(Member &memberAdd) : member(memberAdd) {
-    services.clear();
+    services = vector<Transaction>();
 }
 memberReport::~memberReport() {
     Clear();
@@ -15,7 +15,7 @@ void memberReport::Generate() {
     std::tm *localTime = std::localtime(&now);
 
     std::ostringstream filename;
-    filename << "../output/member_report_" << member.name << "_"
+    filename << "./output/member_report_" << member.name << "_"
              << std::put_time(localTime, "%Y%m%d_%H%M%S") << ".txt";
 
     std::ofstream outFile(filename.str());
@@ -26,7 +26,7 @@ void memberReport::Generate() {
 
     member.display(outFile);
     for (auto &service : services) {
-        outFile << "Date of Service: " << service.getServiceDate() << std::endl;
+        outFile << "\nDate of Service: " << service.getServiceDate() << std::endl;
         outFile << "Provider ID: " << service.getProviderId() << std::endl;
         outFile << "Service name: " << service.getServiceName() << std::endl;
     }
@@ -38,4 +38,8 @@ void memberReport::addService(Transaction &service) {
 }
 void memberReport::Clear() {
     services.clear();
+}
+// returns the size of the services vector.
+size_t memberReport::size() {
+    return services.size();
 }

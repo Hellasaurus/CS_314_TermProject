@@ -1,0 +1,12 @@
+*** Displaying Member ***
+
+Name: Edith Duncan
+ID #: 20
+Address is: Address Line 1: 7781 Robinson Rd
+City: Winston–Salem
+State: AK
+Zip: 21425
+The status of this member is ACTIVE!
+
+Date of Service: 12/9/2024
+Provider ID: 64

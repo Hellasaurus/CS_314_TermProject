@@ -99,7 +99,7 @@ class Manager {
     // Creates a transaction with user input, returning the id of the resulting transaction if successful, or -1 if the transaction failed.
     int createTransaction(int proid);
 
-    // Get reports
+    // Run reports
     void serviceDirectory(ofstream &dest);
 
     // Check member status

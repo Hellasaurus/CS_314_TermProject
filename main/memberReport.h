@@ -21,6 +21,7 @@ class memberReport {
     void Generate();
     void addService(Transaction &service);
     void Clear();
+    size_t size();
 
    private:
     Member member;
