@@ -268,10 +268,11 @@ vector<Transaction> &Manager::getTX(Provider &query, vector<Transaction> &dest) 
     return dest;
 }
 
-int Manager::createTransaction() {
+int Manager::createTransaction(int proid) {
     int memid;
-    int proid;
     int serid;
+    bool serviceResult = 0;
+    char c;
 
     string serviceDate;
     string sysDate;
@@ -279,7 +280,78 @@ int Manager::createTransaction() {
     string rawcom;
     string comment;
 
-    transactions.push_back(Transaction(serviceDate, sysDate, comment, memid, proid, serid, getTXID(), this));
+    char timeStr[100];
+    for (int i = 0; i < 10; i++) {
+        cout << "Please enter the Member number:\n";
+        cin >> memid;
+        cin.ignore(1000, '\n');
+        cin.clear();
+        const Member *mem = getMember(memid);
+        if (mem) {
+            if (mem->checkStatus()) {
+                cout << "Member " << memid << " is in good standing!\n";
+                i += 100;
+            } else {
+                cout << "Member " << memid << " is in suspended status. Please contact customer service.\n";
+                return -1;
+            }
+
+        } else if (mem == nullptr) {
+            cout << "Unable to find member. Please double check the number" << endl;
+            i += 100;
+        }
+    }
+
+    int count = 0;
+    while (!serviceResult && (count < 10)) {
+        count++;
+        cout << "Enter the ID of the service provided:\n";
+        cin >> serid;
+        cin.ignore(1000, '\n');
+        cin.clear();
+
+        const Service *tempsvc = getService(serid);
+        serviceResult = tempsvc;
+        if (serviceResult) {
+            cout << "The selected service is : " << tempsvc->id << " - " << tempsvc->serviceName << endl;
+            cout << "Is this correct?[y/n]\n";
+
+            for (int i = 0; i < 10; i++) {
+                cin.get(c);
+                cin.ignore(1000, '\n');
+                cin.clear();
+                if (c == 'n') {
+                    serviceResult = false;
+                }
+                if (c == 'y') {
+                    i += 100;
+                }
+                if ((c != 'y') && (c != 'n')) {
+                    cout << "invalid response.\n";
+                }
+            }
+        }
+    }
+
+    cout << "Enter the date on which the service was provided:\n";
+    getline(cin, serviceDate);
+    cin.clear();
+
+    cout << "Enter a comment (optional)\n";
+    getline(cin, rawcom);
+    cin.clear();
+    if (rawcom.size() > 100) rawcom.resize(100);
+
+    chrono::system_clock::time_point now = chrono::system_clock::now();
+    time_t now_c = chrono::system_clock::to_time_t(now);
+    const tm *currtm = localtime(&now_c);
+
+    strftime(timeStr, 99, "%d-%m-%Y %H:%M:%OS", currtm);
+
+    transactions.push_back(Transaction(serviceDate, timeStr, comment, memid, proid, serid, getTXID(), this));
+
+    cout << "Transaction #" << transactions.back().transactionID << " was successfully created!\n";
+    return transactions.back().transactionID;
 }
 
 void Manager::serviceDirectory(ofstream &dest) {

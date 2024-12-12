@@ -97,7 +97,7 @@ class Manager {
     vector<Transaction> &getTX(Provider &query, vector<Transaction> &dest);  // given a provider, add associated transactions to dest
 
     // Creates a transaction with user input, returning the id of the resulting transaction if successful, or -1 if the transaction failed.
-    int createTransaction();
+    int createTransaction(int proid);
 
     // Get reports
     void serviceDirectory(ofstream &dest);

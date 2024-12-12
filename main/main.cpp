@@ -141,7 +141,6 @@ int providerTerminal(Manager& man, int& verbose) {
     int currID = -1;
     Provider currProvider;
     // loop control
-    bool done = false;
     char c;
 
     ofstream ofs;
@@ -187,7 +186,7 @@ Choose an option:\n\
                     const Member* mem = man.getMember(currID);
                     if (mem) {
                         cout << "This member's status is: ";
-                        cout << (mem->checkStatus() ? "Active" : "Inactive");
+                        cout << (mem->checkStatus() ? "Active" : "Suspended");
                         cout << endl;
                         i += 100;
 
@@ -215,6 +214,9 @@ Choose an option:\n\
 
             case 't':
                 cout << "Create a Transaction: \n";
+                if (man.createTransaction(currProvider.id) == -1) {
+                    cout << "Failed to create the transaction.\n";
+                }
 
                 break;
             case 'q':
